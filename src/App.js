@@ -2,22 +2,38 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
-function App() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+const courses = [
+  {
+    id: 1,
+    name: 'React'
+  },
+  {
+    id: 2,
+    name: 'NodeJs'
+  },
+  {
+    id: 3,
+    name: 'Angular'
+  },
+]
 
-  const handleSubmit = () => {
+function App() {
+  const [checked, setChecked] = useState();
+  const handleChecked = () => {
     console.log({
-      name,
-      email
+      checked
     })
   }
   
   return (
     <div className="App">
-    <input value={name} onChange={(e) => setName(e.target.value)}></input>
-    <input value={email} onChange={(e) => setEmail(e.target.value)}></input>
-    <button onClick={handleSubmit}>Register</button>
+      {courses.map((course) => (
+        <div key={course.id}>
+          <input type='radio' onChange={() => setChecked(course.id)} checked={checked === course.id}/>
+          {course.name}
+        </div>
+      ))}
+      <button onClick={handleChecked}>Register</button>
     </div>
   );
 }
