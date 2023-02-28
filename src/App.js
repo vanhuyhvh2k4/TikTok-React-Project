@@ -2,16 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
+const gifts = [
+  'CPU i9',
+  'Ram 32Gb Rgb',
+  'Rgb keyboard'
+]
+
 function App() {
-  const [counter, setCounter] = useState(1);
-  const handleIncrease = () => {
-    setCounter(counter => counter + 1)
+  const [gift, setGift]= useState();
+
+  const randomGift = () => {
+    const index = Math.floor(Math.random() * gifts.length);
+
+    setGift(gifts[index]);
   }
-  
+
   return (
     <div className="App">
-      <h1>{counter}</h1>
-      <button onClick={handleIncrease}>Increase</button>
+      <h1>{gift || 'don\'t have any gift'}</h1>
+      <button onClick={randomGift}>Get Gift</button>
     </div>
   );
 }
