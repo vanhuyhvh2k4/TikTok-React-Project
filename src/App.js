@@ -3,15 +3,21 @@ import './App.css';
 import {useState} from 'react';
 
 function App() {
-  const [counter, setCounter] = useState(1);
-  const handleIncrease = () => {
-    setCounter(counter => counter + 1)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = () => {
+    console.log({
+      name,
+      email
+    })
   }
   
   return (
     <div className="App">
-      <h1>{counter}</h1>
-      <button onClick={handleIncrease}>Increase</button>
+    <input value={name} onChange={(e) => setName(e.target.value)}></input>
+    <input value={email} onChange={(e) => setEmail(e.target.value)}></input>
+    <button onClick={handleSubmit}>Register</button>
     </div>
   );
 }
