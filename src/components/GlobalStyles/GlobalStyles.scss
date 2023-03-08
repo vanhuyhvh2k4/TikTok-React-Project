@@ -3,13 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary: #fe2c55;
+    //color
+    --primary: rgb(245, 42, 83);
     --back: black;
+    --white: white;
     --text-color: #333;
 
     // default layout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
+
+    --btn-hover: rgba(22, 24, 35, 0.03);
 }
 
 * {
