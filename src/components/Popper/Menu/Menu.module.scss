@@ -1,0 +1,16 @@
+.menu-list {
+    width: 224px;
+}
+
+.menu-item {
+    margin-left: unset !important;
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: unset;
+    font-weight: 500;
+    padding: 11px 16px;
+
+    &:hover {
+        background-color: var(--btn-hover);
+    }
+}
