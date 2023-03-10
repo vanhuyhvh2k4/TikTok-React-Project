@@ -9,6 +9,7 @@
 }
 
 .inner {
+    padding: 0 var(--default-layout-horizontal-spacer);
     height: 100%;
     width: var(--default-layout-widht, 1150px);
     display: flex;
@@ -95,4 +96,5 @@
     margin-left: 28px;
     background-color: transparent;
     padding: 8px;
+    cursor: pointer;
 }
