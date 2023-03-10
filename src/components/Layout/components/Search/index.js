@@ -20,14 +20,31 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef()
 
     useEffect(() => {
+
+        if (!searchValue.trim()) {
+            setSearchResult([])
+            return;
+        }
+
+        setLoading(true);
+
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            fetch(`http://localhost:3001/news?q=${encodeURIComponent(searchValue)}`)
+                .then(res => res.json())
+                .then(res => {
+                    setSearchResult(res.data)
+                    setLoading(false)
+                })
+                .catch(() => {
+                    setLoading(false)
+                })
         }, 0)
-    }, [])
+    }, [searchValue])
 
     const handleClearBtn = () => {
         setSearchValue('');
@@ -49,9 +66,9 @@ function Search() {
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
+                                {searchResult.map(result => (
+                                    <AccountItem key={result._id} data={result}></AccountItem>
+                                ))}
                             </PopperWrapper>
                         </div>
                     )}>
@@ -66,12 +83,12 @@ function Search() {
                             onFocus={() => setShowResult(true)}
                             value={searchValue}
                             />
-                            {!!searchValue && (
+                            {!!searchValue && !loading && (
                                 <button className={cx('clear')} onClick={handleClearBtn}>
                                     <FontAwesomeIcon icon={faCircleXmark}/>
                                 </button>
                             )}
-                            {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner}/> */}
+                            {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner}/>}
             
                                     <button className={cx('search-btn')}>
                                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
