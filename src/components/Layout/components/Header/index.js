@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -47,6 +48,8 @@ const MENU_ITEMS = [
 
 function Header() {
 
+    const currentUser = true;
+
     const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
@@ -59,13 +62,38 @@ function Header() {
         console.log(menuItem);
     }
 
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser}/>,
+            title: 'View Profile',
+            to: '/@vanhuy'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins}/>,
+            title: 'Get Coins',
+            to: '/coin'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear}/>,
+            title: 'Settings',
+            to: '/settings'
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut}/>,
+            title: 'Log Out',
+            to: '/logout',
+            separate: true,
+        },
+    ]
+
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
             <div className={cx('logo')}>
                 <img src={images.logo} alt="logo"/>
             </div>
 
-                <Tippy
+                <HeadlessTippy
                     interactive
                     // check if have search result => display
                     visible={searchResult.length > 0}
@@ -89,23 +117,40 @@ function Header() {
         
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner}/>
         
-                            <Tippy content='Search'>
+                            <HeadlessTippy content='Search'>
                                 <button className={cx('search-btn')}>
                                     <FontAwesomeIcon icon={faMagnifyingGlass}/>
                                 </button>
-                            </Tippy>
+                            </HeadlessTippy>
         
                     </div>
-                </Tippy>
-            <div className='actions'>
-                <Button text>Upload</Button>
-                <Button primary>Log in</Button>
-                <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                    <button className={cx('more-btn')}>
-                        <FontAwesomeIcon icon={faEllipsisVertical}/>
-                    </button>
-                </Menu>
-            </div>
+                </HeadlessTippy>
+
+                <div className={cx('actions')}>
+                    {currentUser ? (
+                        <>
+                            <Tippy delay={[0, 300]} content="upload video" placement='bottom'>
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload}/>
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img className={cx('user-avatar')} src='https://images.unsplash.com/photo-1678356188535-1c23c93b0746?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60' alt="Nguyen van a"/>
+                        ) : (
+                                <button className={cx('more-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical}/>
+                                </button>
+                        )}
+                    </Menu>    
+                </div>
         </div>
     </header>
 }

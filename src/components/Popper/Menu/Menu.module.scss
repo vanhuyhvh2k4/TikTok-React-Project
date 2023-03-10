@@ -9,9 +9,13 @@
     width: 100%;
     justify-content: flex-start;
     border-radius: unset;
-    font-weight: 500;
+    font-weight: 400;
     padding: 11px 16px;
     line-height: 1.8rem;
+
+    &.separate {
+        border-top: 1px solid #ccc;
+    }
 
     &:hover {
         background-color: var(--btn-hover);
