@@ -11,10 +11,9 @@ import {
 import AccountItem from '../AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
-
-
 
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -22,11 +21,13 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+const debounce = useDebounce(searchValue, 800);
+
     const inputRef = useRef()
 
     useEffect(() => {
 
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             setSearchResult([])
             return;
         }
@@ -44,7 +45,7 @@ function Search() {
                     setLoading(false)
                 })
         }, 0)
-    }, [searchValue])
+    }, [debounce])
 
     const handleClearBtn = () => {
         setSearchValue('');
