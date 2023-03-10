@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     padding: 6px 16px;
+    width: 100%;
 
     &:hover {
-        background-color: var(--btn-white-hover);
+        background-color: var(--btn-hover);
         cursor: pointer;
     }
 }
