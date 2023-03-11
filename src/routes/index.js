@@ -4,28 +4,34 @@ import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
+import Profile from '~/pages/Profile';
+import routesConfig from '~/config/routes'
 
 const publicRoutes =  [
     {
-        path: '/',
+        path: routesConfig.home,
         compoment: Home
     },
 
     {
-        path: '/following',
+        path: routesConfig.following,
         compoment: Following
     },
 
     {
-        path: '/upload',
+        path: routesConfig.upload,
         compoment: Upload,
         layout: OnlyHeader
     },
 
     {
-        path: '/search',
+        path: routesConfig.search,
         compoment: Search,
         layout: null
+    },
+    {
+        path: routesConfig.profile,
+        compoment: Profile,
     },
 ]
 

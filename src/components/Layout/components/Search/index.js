@@ -45,6 +45,10 @@ const debounce = useDebounce(searchValue, 800);
         fetchApi();
     }, [debounce])
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
     const handleClearBtn = () => {
         setSearchValue('');
         inputRef.current.focus();
@@ -53,6 +57,15 @@ const debounce = useDebounce(searchValue, 800);
 
     const handleHideResult = () => {
         setShowResult(false);
+    }
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+
+        if (!searchValue.startsWith(' ') || searchValue.trim()) {
+            setSearchValue(searchValue)
+        }
+        
     }
     return ( 
         <div>
@@ -78,7 +91,7 @@ const debounce = useDebounce(searchValue, 800);
                             ref={inputRef}
                             placeholder='Search accounts and videos' 
                             spellCheck={false} 
-                            onChange={e => setSearchValue(e.target.value)}
+                            onChange={handleChange}
                             onFocus={() => setShowResult(true)}
                             value={searchValue}
                             />
@@ -89,7 +102,7 @@ const debounce = useDebounce(searchValue, 800);
                             )}
                             {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner}/>}
             
-                                    <button className={cx('search-btn')}>
+                                    <button className={cx('search-btn')} onMouseDown={handleSubmit}>
                                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
                                     </button>
             
