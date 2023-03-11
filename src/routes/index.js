@@ -1,36 +1,36 @@
-import { OnlyHeader } from '~/components/Layout';
+import { OnlyHeader } from '~/layouts';
 
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 import Profile from '~/pages/Profile';
-import routesConfig from '~/config/routes'
+import config from '~/config';
 
 const publicRoutes =  [
     {
-        path: routesConfig.home,
+        path: config.routes.home,
         compoment: Home
     },
 
     {
-        path: routesConfig.following,
+        path: config.routes.following,
         compoment: Following
     },
 
     {
-        path: routesConfig.upload,
+        path: config.routes.upload,
         compoment: Upload,
         layout: OnlyHeader
     },
 
     {
-        path: routesConfig.search,
+        path: config.routes.search,
         compoment: Search,
         layout: null
     },
     {
-        path: routesConfig.profile,
+        path: config.routes.profile,
         compoment: Profile,
     },
 ]
