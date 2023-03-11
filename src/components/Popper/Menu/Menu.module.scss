@@ -1,6 +1,11 @@
 //Menu list
 .menu-list {
-    min-width: 224px;
+    width: 250px;
+    min-width: 100%;
+}
+
+.menu-body {
+    overflow-y: scroll;
 }
 
 //Menu item
@@ -25,6 +30,7 @@
 //Header
 .header {
     position: relative;
+    flex-shrink: 0;
     height: 50px;
     width: 100%;
     margin-top: -8px;
