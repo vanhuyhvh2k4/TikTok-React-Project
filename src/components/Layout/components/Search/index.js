@@ -8,6 +8,7 @@ import {
         faMagnifyingGlass, 
     } from '@fortawesome/free-solid-svg-icons';
 
+import * as searchServices from '~/apiServices/searchServices';
 import AccountItem from '../AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss';
@@ -32,19 +33,16 @@ const debounce = useDebounce(searchValue, 800);
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true)
+            
+            const result = await searchServices.search(debounce);
+            setSearchResult(result)
 
-        setTimeout(() => {
-            fetch(`http://localhost:3001/news?q=${encodeURIComponent(searchValue)}`)
-                .then(res => res.json())
-                .then(res => {
-                    setSearchResult(res.data)
-                    setLoading(false)
-                })
-                .catch(() => {
-                    setLoading(false)
-                })
-        }, 0)
+            setLoading(false)
+        }
+
+        fetchApi();
     }, [debounce])
 
     const handleClearBtn = () => {
