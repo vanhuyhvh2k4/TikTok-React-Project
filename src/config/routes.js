@@ -3,7 +3,7 @@ const routes = {
     following: '/following',
     upload: '/upload',
     search: '/search',
-    profile: '/@:nickname',
+    profile: '/:nickname',
 }
 
 export default routes

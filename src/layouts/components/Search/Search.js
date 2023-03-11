@@ -22,13 +22,13 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
-const debounce = useDebounce(searchValue, 800);
+const debounceValue = useDebounce(searchValue, 800);
 
     const inputRef = useRef()
 
     useEffect(() => {
 
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([])
             return;
         }
@@ -36,14 +36,14 @@ const debounce = useDebounce(searchValue, 800);
         const fetchApi = async () => {
             setLoading(true)
             
-            const result = await searchServices.search(debounce);
+            const result = await searchServices.search(debounceValue);
             setSearchResult(result)
 
             setLoading(false)
         }
 
         fetchApi();
-    }, [debounce])
+    }, [debounceValue])
 
     const handleSubmit = (e) => {
         e.preventDefault();
