@@ -1,0 +1,73 @@
+.wrapper {
+    --search-boder-radius: 92px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: var(--default-layout-header-height, 60px);
+    background-color: var(--white);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    padding: 0 var(--default-layout-horizontal-spacer);
+    height: 100%;
+    width: var(--default-layout-widht, 1150px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+//Action
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    background-color: transparent;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.action-btn {
+    background-color: transparent;
+    color: #161823;
+    font-size: 2rem;
+    padding: 6px 12px;
+    cursor: pointer;
+
+    &:nth-child(3) {
+        position: relative;
+    }
+
+    &:nth-child(3)::after {
+        content: attr(data-content);
+        position: absolute;
+        width: 25px;
+        top: 2px;
+        right: 6px;
+        font-size: 1.4rem;
+        height: 20px;
+        border-radius: 50%;
+        color: var(--white);
+        background-color: var(--primary);
+    }
+}
+
+.action-btn + .action-btn {
+    margin-left: 6px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 0 6px 12px;
+}

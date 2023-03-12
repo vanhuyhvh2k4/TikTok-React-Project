@@ -1,0 +1,52 @@
+//Menu list
+.menu-list {
+    width: 250px;
+    min-width: 100%;
+}
+
+.menu-body {
+    overflow-y: scroll;
+}
+
+//Menu item
+.menu-item {
+    margin-left: unset !important;
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: unset;
+    font-weight: 400;
+    padding: 11px 16px;
+    line-height: 1.8rem;
+
+    &.separate {
+        border-top: 1px solid #ccc;
+    }
+
+    &:hover {
+        background-color: var(--btn-hover);
+    }
+}
+
+//Header
+.header {
+    position: relative;
+    flex-shrink: 0;
+    height: 50px;
+    width: 100%;
+    margin-top: -8px;
+}
+
+.back-btn {
+    width: 50px;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
