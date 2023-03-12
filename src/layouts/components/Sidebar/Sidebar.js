@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { HomeIcon, HomeActiveIcon, LiveIcon, LiveActiveIcon, UserGroupIcon, UserGroupActiveIcon } from '~/components/Icons';
+import SuggestedAccounts from '~/components/SuggestedAccounts';
 
 import config from '~/config';
 import Menu, {MenuItem} from './Menu';
@@ -15,6 +16,8 @@ function Sidebar() {
             <MenuItem title="Following" to={config.routes.following} icon={<UserGroupIcon/>} activeIcon={<UserGroupActiveIcon/>}/>
             <MenuItem title="Live" to={config.routes.live} icon={<LiveIcon/>} activeIcon={<LiveActiveIcon/>}/>
         </Menu>
+
+        <SuggestedAccounts label='Suggested accounts'/>
     </aside>
 }
 
