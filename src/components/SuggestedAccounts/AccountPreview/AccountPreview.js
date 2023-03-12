@@ -7,28 +7,28 @@ import styles from './AccountPreview.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview() {
+function AccountPreview({ data }) {
     return ( 
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <img 
                     className={cx('avatar')} 
-                    src="https://images.unsplash.com/photo-1678541192455-e1e96bdf1b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                    src={data.avatar} 
                     alt=""/>
                 <Button primary>Follow</Button>
             </header>
             <section className={cx('body')}>
                 <div className={cx('item-info')}>
                     <p className={cx('nickname')}>
-                        <strong>vanhuyit</strong>
-                        <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>
+                        <strong>{data.fullName}</strong>
+                        {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                     </p>
-                    <p className={cx('name')}>Van Huy It</p>
+                    <p className={cx('name')}>{data.nickName}</p>
                 </div>
                 <p className={cx('analytics')}>
-                    <strong className={cx('value')}>8.2M </strong>
+                    <strong className={cx('value')}>{data.numOfFollowers}M </strong>
                     <span className={cx('label')}>Followers</span>
-                    <strong className={cx('value')}>531k </strong>
+                    <strong className={cx('value')}>{data.numOfLikes}k </strong>
                     <span className={cx('label')}>Likes</span>
                 </p>
             </section>

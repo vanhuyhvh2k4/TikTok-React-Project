@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 16px 0 0 8px;
+
+    & a {
+        color: #161823d8 !important;
+        margin-right: 6px;
+
+        &:hover {text-decoration: underline;}
+    }
+
+    & section {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
