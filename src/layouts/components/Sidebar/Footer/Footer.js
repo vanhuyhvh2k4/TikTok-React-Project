@@ -30,7 +30,7 @@ function Footer() {
                 <a href="!#">Creator Portal</a>
                 <a href="!#">Community Guidelines</a>
             </section>
-                <span>© 2023 TikTok</span>
+            <span>© 2023 TikTok</span>
         </div>
      );
 }

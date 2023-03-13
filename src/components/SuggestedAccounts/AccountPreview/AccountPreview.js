@@ -15,15 +15,15 @@ function AccountPreview({ data }) {
                     className={cx('avatar')} 
                     src={data.avatar} 
                     alt=""/>
-                <Button primary>Follow</Button>
+                <Button className={cx('btn')} primary>Follow</Button>
             </header>
             <section className={cx('body')}>
                 <div className={cx('item-info')}>
-                    <p className={cx('nickname')}>
+                    <p className={cx('name')}>
                         <strong>{data.fullName}</strong>
                         {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                     </p>
-                    <p className={cx('name')}>{data.nickName}</p>
+                    <p className={cx('nickName')}>{data.nickName}</p>
                 </div>
                 <p className={cx('analytics')}>
                     <strong className={cx('value')}>{data.numOfFollowers}M </strong>

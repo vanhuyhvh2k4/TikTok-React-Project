@@ -1,4 +1,4 @@
-export const UploadIcon = ({width = '3rem', height = '3rem', className}) => (
+export const UploadIcon = ({width = '2.6rem', height = '2.6rem', className}) => (
     <svg
     className={className}
     width={width}
@@ -11,7 +11,7 @@ export const UploadIcon = ({width = '3rem', height = '3rem', className}) => (
     </svg>
 )
 
-export const PlaneIcon = ({ className, width = '3rem', height = '3rem' }) => (
+export const PlaneIcon = ({ className, width = '2.2rem', height = '2.2rem' }) => (
     <svg 
     className={className} 
     width={width} 
@@ -23,7 +23,7 @@ export const PlaneIcon = ({ className, width = '3rem', height = '3rem' }) => (
     </svg>
 )
 
-export const MessageIcon = ({ className, width = '3rem', height = '3rem'}) => (
+export const MessageIcon = ({ className, width = '2.7rem', height = '2.7rem'}) => (
     <svg 
     className={className}
     width={width}
@@ -93,7 +93,7 @@ export const UserGroupActiveIcon = ({ className, width = '2.5rem', height = '2.5
         <path d="M25.5 17C25.5 21.1421 22.1421 24.5 18 24.5C13.8579 24.5 10.5 21.1421 10.5 17C10.5 12.8579 13.8579 9.5 18 9.5C22.1421 9.5 25.5 12.8579 25.5 17Z"></path><path d="M7.10396 34.7906C8.78769 30.2189 12.8204 27 18.0009 27C23.1818 27 27.2107 30.2213 28.8958 34.7898C29.3075 35.906 28.6141 37 27.5 37H8.5C7.38629 37 6.69289 35.9067 7.10396 34.7906Z"></path><path d="M40.6308 37H32C31.2264 34.1633 30.0098 31.5927 28.144 29.7682C29.5384 28.9406 31.1829 28.5 33 28.5C37.239 28.5 40.536 30.8992 41.9148 35.0108C42.2516 36.0154 41.5423 37 40.6308 37Z"></path><path d="M33 26.5C36.0376 26.5 38.5 24.0376 38.5 21C38.5 17.9624 36.0376 15.5 33 15.5C29.9624 15.5 27.5 17.9624 27.5 21C27.5 24.0376 29.9624 26.5 33 26.5Z"></path></svg>
 )
 
-export const LiveIcon = ({ className, width = '2.5rem', height = '2.5rem' }) => (
+export const LiveIcon = ({ className, width = '2.6rem', height = '2.6rem' }) => (
     <svg 
         className={className}
         width={width} 
@@ -105,7 +105,7 @@ export const LiveIcon = ({ className, width = '2.5rem', height = '2.5rem' }) => 
     </svg>
 )
 
-export const LiveActiveIcon = ({ className, width = '2.5rem', height = '2.5rem' }) => (
+export const LiveActiveIcon = ({ className, width = '2.6rem', height = '2.6rem' }) => (
     <svg 
         className={className}
         width={width} 

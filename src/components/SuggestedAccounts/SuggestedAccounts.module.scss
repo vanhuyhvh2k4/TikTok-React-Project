@@ -1,16 +1,25 @@
 .wrapper {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
+    margin-bottom: 8px;
 }
 
 .label {
-    font-size: 1.4rem;
-    color: #161823bf;
+    font-size: 1.2rem;
+    color: var(--text-color-light);
     padding: 8px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .more-btn {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 600;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.less-btn {
+    font-size: 1.2rem;
     color: var(--primary);
     font-weight: 600;
     padding: 8px;
@@ -43,8 +52,10 @@
 }
 
 .name {
-    font-size: 1.6rem;
-    color: #161823;
+    font-size: 1.3rem;
+    font-family: SofiaPro;
+    color: var(--text-color);
+    text-overflow: ellipsis;
 }
 
 .icon {
@@ -54,7 +65,7 @@
 }
 
 .nickname {
-    font-size: 1.2rem;
-    color: #161823bf;
+    font-size: 1rem;
+    color: var(--text-color-light);
     line-height: 1.6rem;
 }

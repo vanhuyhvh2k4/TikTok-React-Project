@@ -1,13 +1,12 @@
 @import 'normalize.css';
 
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
-
 :root {
     //color
     --primary: rgb(245, 42, 83);
     --back: black;
     --white: white;
-    --text-color: #333;
+    --text-color: #161823;
+    --text-color-light: #161823bf;
 
     // default layout
     --default-layout-header-height: 60px;

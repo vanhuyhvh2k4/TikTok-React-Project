@@ -2,7 +2,7 @@
     padding: 16px 0 0 8px;
 
     & a {
-        color: #161823d8 !important;
+        color: var(--text-color-light) !important;
         margin-right: 6px;
 
         &:hover {text-decoration: underline;}
@@ -13,5 +13,9 @@
         margin-bottom: 12px;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    & span {
+        font-size: 1.1rem;
     }
 }

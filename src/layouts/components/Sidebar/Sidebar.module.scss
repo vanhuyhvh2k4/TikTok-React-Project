@@ -1,9 +1,29 @@
 .wrapper {
-    padding: 20px 0px 20px 8px;
+    padding: 20px 0 20px 8px;
     margin-left: -20px;
     width: 356px;
     height: calc(100vh - 60px);
     max-height: 100%;
+    overflow: hidden;
+
+    & .content {
+      padding-right: 8px;
+    }
+}
+
+.wrapper-no-login {
+  padding: 20px 4px 24px;
+  border-top: 1px solid #ddd;
+
+  & p {
+    font-size: 1.4rem;
+    color: var(--text-color-light);
+  }
+
+  & .login-btn {
+    margin-top: 20px;
+    width: 100%;
+  }
 }
 
 /* Ẩn scrollbar khi không hover */

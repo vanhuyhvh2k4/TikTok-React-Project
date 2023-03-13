@@ -16,18 +16,25 @@
     border-radius: 50%;
 }
 
+.btn {
+    padding: 4px;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
 .body {
     margin-top: 18px;
-    color: #161823;
+    color: var(--text-color);
 }
 
 .item-info {
     flex: 1;
 }
 
-.nickname {
-    font-size: 1.8rem;
+.name {
+    font-size: 1.6rem;
     line-height: 1rem;
+    font-family: SofiaPro;
 }
 
 .icon {
@@ -36,12 +43,12 @@
     color: #20d5ec;
 }
 
-.name {
+.nickName {
     font-size: 1.2rem;
 }
 
 .analytics {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-top: 12px;
 }
 
@@ -50,5 +57,5 @@
 }
 
 .label {
-    color: #161823fb;
+    color: var(--text-color-light);
 }
