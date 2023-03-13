@@ -1,0 +1,153 @@
+.wrapper {
+    display: flex;
+    padding: 20px 0;
+}
+
+.left {
+    flex: 0 0 auto;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.right {
+    flex: 1 1;
+    margin-left: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-wrapper {
+    padding-right: 24px;
+}
+
+.follow-btn {
+    height: 28px;
+    font-size: 1.4rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: flex-end;
+}
+
+.nickName {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    white-space: nowrap;
+    font-family: SofiaPro;
+    font-family: 700;
+    margin-right: 6px;
+}
+
+.icon {
+    font-size: 1.4rem;
+    margin-right: 6px;
+    color: rgb(32, 213, 236);
+    transform: translateY(-4px);
+}
+
+.name {
+    font-size: 1.2rem;
+    color: var(--text-color-light);
+}
+
+.desc {
+    font-size: 1.3rem;
+}
+
+.song {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    & strong {
+        margin-left: 6px;
+    }
+}
+
+.body {
+    display: flex;
+    align-items: flex-end;
+}
+
+.video {
+    width: fit-content;
+    height: fit-content;
+    min-width: 293px; 
+    max-width: 522px;
+    min-height: 295px;
+    max-height: 522px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.action {
+
+}
+
+.action-wrapper {
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+    cursor: pointer;
+
+    & span {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-color-light);
+        -webkit-user-select: none;
+    }
+
+    
+    &.active {
+        color: var(--primary);
+    }
+}
+
+.action-icon {
+    position: relative;
+    margin-bottom: 6px;
+    user-select: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        top: -30%;
+        left: -60%;
+        background-color: rgba(22, 24, 35, 0.08);
+        border-radius: 50%;
+    }
+}
+
+.share-wrapper {
+
+}
+
+.share-item {
+    display: flex;
+
+    & div {
+        width: 40px;
+        height: 40px;
+        background-color: red;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+    }
+}
+
