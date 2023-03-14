@@ -9,9 +9,9 @@ import * as suggestedAccountService from '~/services/suggestedAccountService';
 const cx = classNames.bind(styles);
 
 function SuggestedAccounts({ label }) {
+    const initialNumAcc = 5;
     const [suggestedAccount, setSuggestedAccount] = useState([]);
-    const [numDisplayedAcc, setNumDisplayedAcc] = useState(5);
-    const [initialNumAcc, setInitialNumAcc] = useState(5);
+    const [numDisplayedAcc, setNumDisplayedAcc] = useState(initialNumAcc);
 
     useEffect(() => {
         const fetchApi = async () => {

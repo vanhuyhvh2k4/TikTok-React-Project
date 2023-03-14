@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     padding: 20px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .left {
@@ -101,13 +102,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 12px;
+    margin-top: 16px;
     cursor: pointer;
 
     & span {
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 700;
         color: var(--text-color-light);
+        user-select: none;
         -webkit-user-select: none;
     }
 
@@ -119,7 +121,7 @@
 
 .action-icon {
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     user-select: none;
 
     &::after {
@@ -135,19 +137,26 @@
 }
 
 .share-wrapper {
-
+    width: 280px;
+    height: fit-content;
 }
 
 .share-item {
-    display: flex;
+    width: 100%;
+    justify-content: unset;
 
-    & div {
-        width: 40px;
-        height: 40px;
-        background-color: red;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
+    & + .share-item {
+        margin-left: unset;
+    }
+
+    & > span:last-child {
+        font-size: 1.4rem;
+        margin-left: 12px;
+        transform: translateY(-2px);
+    }
+
+    &:hover {
+        background-color: var(--btn-hover);
     }
 }
 
