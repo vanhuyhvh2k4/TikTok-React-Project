@@ -9,12 +9,15 @@ const cx = classNames.bind(styles);
 function Video({ listData, shareData }) {
     return ( 
             <div className={cx('wrapper')}>
-                <VideoItem listData={listData} shareData={shareData}/>
+                {listData.map((data, index) => (
+                    <VideoItem key={index} data={data} shareData={shareData}/>
+                ))}
             </div>
      );
 }
 
 Video.propTypes = {
     listData: PropTypes.array.isRequired,
+    shareData: PropTypes.array.isRequired,
 }
 export default Video;

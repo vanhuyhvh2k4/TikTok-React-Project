@@ -1,28 +1,6 @@
 import Video from "~/components/Video";
-import { Embed, PlaneCircle, FacebookCircle, WhatAppCircle, Twitter } from "~/components/Icons";
+import { menuOfShare } from '~/data'
 
-const shareData = [
-    {
-        title: 'embed',
-        icon: <Embed/>
-    },
-    {
-        title: 'embed',
-        icon: <PlaneCircle/>
-    },
-    {
-        title: 'embed',
-        icon: <FacebookCircle/>
-    },
-    {
-        title: 'embed',
-        icon: <WhatAppCircle/>
-    },
-    {
-        title: 'embed',
-        icon: <Twitter/>
-    },
-]
 
 const listData = [
     {
@@ -51,7 +29,7 @@ const listData = [
 
 function Home() {
     return ( 
-        <Video listData={listData} shareData={shareData}/>
+        <Video listData={listData} shareData={menuOfShare}/>
      );
 }
 

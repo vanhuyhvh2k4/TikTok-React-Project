@@ -3,18 +3,17 @@ import classNames from "classnames/bind";
 import styles from './Discover.module.scss';
 
 const cx = classNames.bind(styles);
-function DiscoverItem({ icon, label }) {
+function DiscoverItem({ data }) {
     return ( 
         <div href='google.com' className={cx('item-wrapper')}>
-            {icon}
-            <span className={cx('label')}>{label}</span>
+            {data.icon}
+            <span className={cx('label')}>{data.title}</span>
         </div>
     );
 }
 
 DiscoverItem.propTypes = {
-    icon: PropTypes.node.isRequired,
-    label: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
 }
 
 export default DiscoverItem;

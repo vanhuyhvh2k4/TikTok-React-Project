@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { faCheckCircle, faCommentDots, faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faChevronDown, faCommentDots, faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import Tippy from "@tippyjs/react/headless";
@@ -10,38 +10,88 @@ import Button from "~/components/Button";
 import { Music } from "~/components/Icons";
 import media from '~/assets/media';
 import { Wrapper } from "~/components/Popper";
-
+import AccountPreview from "~/components/SuggestedAccounts/AccountPreview";
 
 const cx = classNames.bind(styles);
 
-function VideoItem({ listData, shareData }) {
+const datatest = {
+    "_id": {
+      "$oid": "640dd9f6b1c275d83ffa5b5c"
+    },
+    "firstName": "Deck",
+    "lastName": "Lerven",
+    "fullName": "Deck Lerven",
+    "avatar": "https://robohash.org/doloreseapossimus.jpg?size=100x100&set=set1",
+    "nickName": "dlerven3",
+    "tick": true,
+    "numOfFollowers": 20,
+    "numOfLikes": 11
+  }
+
+function VideoItem({ data, shareData }) {
+    const initialShare = 5;
+    const [numDisplayShare, setNumDisplayShare] = useState(initialShare);
     const [heart, setHeart] = useState(false);
 
     const handleClickHeart = () => {
         setHeart(() => !heart);
     }
 
+    const handleSeeMore = () => {
+        setNumDisplayShare(shareData.length);
+    }
+
+    const handleHide = () => {
+        setNumDisplayShare(initialShare)
+    }
+
     const renderShare = () => (
         <Wrapper className={cx('share-wrapper')}>
-            {shareData.map((data, index) => (
+            {shareData.slice(0, numDisplayShare).map((data, index) => (
                 <Button key={index} className={cx('share-item')} leftIcon={data.icon}>{data.title}</Button>
             ))}
+
+            {numDisplayShare < shareData.length &&  <div className={cx('seeMore-icon')} onClick={handleSeeMore}>
+                    <FontAwesomeIcon icon={faChevronDown}/>
+            </div>}
         </Wrapper>
     )
+
+    const renderAccountPreview = () => (
+        <Wrapper>
+            <AccountPreview data={datatest}/>
+        </Wrapper>
+    )
+
     return ( 
-        listData.map((data, index) => (
-            <div key={index} className={cx('wrapper')}>
+            <div className={cx('wrapper')}>
                 <div className={cx('left')}>
-                    <img className={cx('avatar')} src={data.avatar} alt=''/>
+                    <Tippy 
+                        interactive
+                        placement="bottom-start"
+                        offset={[-20, 10]}
+                        delay={[500, 0]}
+                        render={renderAccountPreview}
+                    >
+                            <img className={cx('avatar')} src={data.avatar} alt=''/>
+                    </Tippy>
                 </div>
                 <div className={cx('right')}>
                     <header className={cx('header')}>
                         <div className={cx('header-wrapper')}>
-                            <span className={cx('user-info')}>
-                                <h4 className={cx('nickName')}>{data.nickName}</h4>
-                                {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
-                                <span className={cx('name')}>{data.fullName}</span>
-                            </span>
+                                <Tippy 
+                                    interactive
+                                    placement="bottom"
+                                    offset={[-34, 40]}
+                                    delay={[500, 0]}
+                                    render={renderAccountPreview}
+                                >
+                                    <span className={cx('user-info')}>
+                                        <h4 className={cx('nickName')}>{data.nickName}</h4>
+                                        {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                                        <span className={cx('name')}>{data.fullName}</span>
+                                    </span>
+                                </Tippy>
                             <p className={cx('desc')}>
                                 <span>{data.desc}</span>
                             </p>
@@ -72,6 +122,7 @@ function VideoItem({ listData, shareData }) {
                                 <span>{data.comment}</span>
                             </div>
                             <Tippy
+                                onHide={handleHide}
                                 interactive
                                 offset={[100, 20]}
                                 placement="top"
@@ -89,13 +140,12 @@ function VideoItem({ listData, shareData }) {
                     </section>
                 </div>
             </div> 
-        ))
     );
 }
 
 VideoItem.propTypes = {
-    listData: PropTypes.array.isRequired,
-    shareData: PropTypes.any.isRequired,
+    data: PropTypes.object.isRequired,
+    shareData: PropTypes.array.isRequired,
 }
 
 export default VideoItem;

@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import { HomeIcon, HomeActiveIcon, LiveIcon, LiveActiveIcon, UserGroupIcon, UserGroupActiveIcon, HaskTag, Music } from '~/components/Icons';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
-import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -13,6 +12,41 @@ import styles from './Sidebar.module.scss';
 import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
+
+const listDataOfDiscover = [
+    {
+        icon: <HaskTag/>,
+        title: 'suthatla',
+    },
+    {
+        icon: <Music/>,
+        title: 'Về Nghe Mẹ Ru - NSND Bach Tuyet & Hứa Kim Tuyền & 14 Casper & Hoàng Dũng',
+    },
+    {
+        icon: <Music/>,
+        title: 'Thiên Thần Tình Yêu - RICKY STAR',
+    },
+    {
+        icon: <HaskTag/>,
+        title: '7749hieuung',
+    },
+    {
+        icon: <HaskTag/>,
+        title: 'genzlife',
+    },
+    {
+        icon: <HaskTag/>,
+        title: 'sansangthaydoi',
+    },
+    {
+        icon: <HaskTag/>,
+        title: 'matkedoi',
+    },
+    {
+        icon: <Music/>,
+        title: 'Thằng Hầu (Thái Hoàng Remix) [Short Version] - Dunghoangpham',
+    },
+]
 
 function Sidebar() {
     const currentUser = false;
@@ -36,17 +70,7 @@ function Sidebar() {
                 
                             <SuggestedAccounts label='Suggested accounts'/>
     
-                            <Discover>
-                                <DiscoverItem icon={<HaskTag/>} label='suthatla'/>
-                                <DiscoverItem icon={<Music/>} label='Về Nghe Mẹ Ru - NSND Bach Tuyet & Hứa Kim Tuyền & 14 Casper & Hoàng Dũng'/>
-                                <DiscoverItem icon={<Music/>} label='Thiên Thần Tình Yêu - RICKY STAR'/>
-                                <DiscoverItem icon={<HaskTag/>} label='7749hieuung'/>
-                                <DiscoverItem icon={<HaskTag/>} label='genzlife'/>
-                                <DiscoverItem icon={<Music/>} label='Thiên Thần Tình Yêu - RICKY STAR'/>
-                                <DiscoverItem icon={<HaskTag/>} label='sansangthaydoi'/>
-                                <DiscoverItem icon={<HaskTag/>} label='matkedoi'/>
-                                <DiscoverItem icon={<Music/>} label='Thằng Hầu (Thái Hoàng Remix) [Short Version] - Dunghoangpham'/>
-                            </Discover>
+                            <Discover listData={listDataOfDiscover}/>
     
                             <Footer/>
                         </div>

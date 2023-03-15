@@ -139,11 +139,15 @@
 .share-wrapper {
     width: 280px;
     height: fit-content;
+    overflow-y: scroll;
+    max-height: 448px;
+    padding: 8px 0;
 }
 
 .share-item {
     width: 100%;
     justify-content: unset;
+    cursor: pointer;
 
     & + .share-item {
         margin-left: unset;
@@ -160,3 +164,13 @@
     }
 }
 
+.seeMore-icon {
+    width: 100%;
+    text-align: center;
+    color: var(--text-color);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--btn-hover);
+    }
+}
