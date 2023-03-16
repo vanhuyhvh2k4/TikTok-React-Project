@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import TippyHeadless from '@tippyjs/react/headless';
+import { Link } from 'react-router-dom';
 
 import styles from './SuggestedAccounts.module.scss'
 import { Wrapper as PopperWrapper } from '../Popper';
@@ -31,21 +32,23 @@ function AccountItem({ data }) {
                 placement='bottom'
                 render={renderPreview}
             >
-                <div className={cx('account-item')}>
-                    <img 
-                        className={cx('avatar')}
-                        src={data.avatar}
-                        alt="imageUser"
-                    />
-                    <div className={cx('item-info')}>
-                        <p className={cx('name')}>
-                            <strong>{data.fullName}</strong>
-                            {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
-                        </p>
-                        <p className={cx('nickname')}>{data.nickName}</p>
-        
+                <Link to={`@${data.nickName}`}>
+                    <div className={cx('account-item')}>
+                        <img 
+                            className={cx('avatar')}
+                            src={data.avatar}
+                            alt="imageUser"
+                        />
+                        <div className={cx('item-info')}>
+                            <p className={cx('name')}>
+                                <strong>{data.nickName}</strong>
+                                {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                            </p>
+                            <p className={cx('nickname')}>{data.fullName}</p>
+            
+                        </div>
                     </div>
-                </div>
+                </Link>
             </TippyHeadless>
         </div>
      );

@@ -11,19 +11,25 @@
 }
 
 .more-btn {
+    width: fit-content;
     font-size: 1.2rem;
     color: var(--primary);
     font-weight: 600;
     padding: 8px;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .less-btn {
+    width: fit-content;
     font-size: 1.2rem;
     color: var(--primary);
     font-weight: 600;
     padding: 8px;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none
 }
 
 .account-item {

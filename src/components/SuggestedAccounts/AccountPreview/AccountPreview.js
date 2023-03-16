@@ -21,10 +21,10 @@ function AccountPreview({ data }) {
             <section className={cx('body')}>
                 <div className={cx('item-info')}>
                     <p className={cx('name')}>
-                        <strong>{data.fullName}</strong>
+                        <strong>{data.nickName}</strong>
                         {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                     </p>
-                    <p className={cx('nickName')}>{data.nickName}</p>
+                    <p className={cx('nickName')}>{data.fullName}</p>
                 </div>
                 <p className={cx('analytics')}>
                     <strong className={cx('value')}>{data.numOfFollowers}M </strong>

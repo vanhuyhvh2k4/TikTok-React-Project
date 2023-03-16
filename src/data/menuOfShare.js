@@ -2,51 +2,51 @@ import { Embed, PlaneCircle, FacebookCircle, WhatAppCircle, Twitter, Link, LinkL
 
 const data = [
     {
-        title: 'embed',
+        title: 'Embed',
         icon: <Embed/>
     },
     {
-        title: 'embed',
+        title: 'Send to friends',
         icon: <PlaneCircle/>
     },
     {
-        title: 'embed',
+        title: 'Share to Facebook',
         icon: <FacebookCircle/>
     },
     {
-        title: 'embed',
+        title: 'Share to WhatsApp',
         icon: <WhatAppCircle/>
     },
     {
-        title: 'embed',
+        title: 'Share to Twitter',
         icon: <Twitter/>
     },
     {
-        title: 'embed',
+        title: 'Coppy link',
         icon: <Link/>
     },
     {
-        title: 'embed',
+        title: 'Share to LinkLn',
         icon: <LinkLn/>
     },
     {
-        title: 'embed',
+        title: 'Share to Redit',
         icon: <Redit/>
     },
     {
-        title: 'embed',
+        title: 'Share to Telegram',
         icon: <Telegram/>
     },
     {
-        title: 'embed',
+        title: 'Share to Email',
         icon: <Mail/>
     },
     {
-        title: 'embed',
+        title: 'Share to Line',
         icon: <Line/>
     },
     {
-        title: 'embed',
+        title: 'Share to Printerest',
         icon: <Printerest/>
     },
 ]

@@ -5,11 +5,12 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import config from '~/config';
-import Discover, { DiscoverItem } from './Discover';
+import Discover from './Discover';
 import Footer from './Footer';
 import Menu, {MenuItem} from './Menu';
 import styles from './Sidebar.module.scss';
 import Button from '~/components/Button';
+import { footer } from '~/data';
 
 const cx = classNames.bind(styles);
 
@@ -17,34 +18,42 @@ const listDataOfDiscover = [
     {
         icon: <HaskTag/>,
         title: 'suthatla',
+        type: 'tag'
     },
     {
         icon: <Music/>,
         title: 'Về Nghe Mẹ Ru - NSND Bach Tuyet & Hứa Kim Tuyền & 14 Casper & Hoàng Dũng',
+        type: 'music'
     },
     {
         icon: <Music/>,
         title: 'Thiên Thần Tình Yêu - RICKY STAR',
+        type: 'music'
     },
     {
         icon: <HaskTag/>,
         title: '7749hieuung',
+        type: 'tag'
     },
     {
         icon: <HaskTag/>,
         title: 'genzlife',
+        type: 'tag'
     },
     {
         icon: <HaskTag/>,
         title: 'sansangthaydoi',
+        type: 'tag'
     },
     {
         icon: <HaskTag/>,
         title: 'matkedoi',
+        type: 'tag'
     },
     {
         icon: <Music/>,
         title: 'Thằng Hầu (Thái Hoàng Remix) [Short Version] - Dunghoangpham',
+        type: 'music'
     },
 ]
 
@@ -72,7 +81,7 @@ function Sidebar() {
     
                             <Discover listData={listDataOfDiscover}/>
     
-                            <Footer/>
+                            <Footer listData={footer}/>
                         </div>
                         
                 </PerfectScrollbar>

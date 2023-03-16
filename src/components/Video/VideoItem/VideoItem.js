@@ -11,6 +11,7 @@ import { Music } from "~/components/Icons";
 import media from '~/assets/media';
 import { Wrapper } from "~/components/Popper";
 import AccountPreview from "~/components/SuggestedAccounts/AccountPreview";
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -70,28 +71,32 @@ function VideoItem({ data, shareData }) {
                         interactive
                         placement="bottom-start"
                         offset={[-20, 10]}
-                        delay={[500, 0]}
+                        delay={[800, 0]}
                         render={renderAccountPreview}
                     >
-                            <img className={cx('avatar')} src={data.avatar} alt=''/>
+                            <Link className={cx('link')} to={`@${data.nickName}`}><img className={cx('avatar')} src={data.avatar} alt=''/></Link>
                     </Tippy>
                 </div>
                 <div className={cx('right')}>
                     <header className={cx('header')}>
                         <div className={cx('header-wrapper')}>
-                                <Tippy 
-                                    interactive
-                                    placement="bottom"
-                                    offset={[-34, 40]}
-                                    delay={[500, 0]}
-                                    render={renderAccountPreview}
-                                >
-                                    <span className={cx('user-info')}>
-                                        <h4 className={cx('nickName')}>{data.nickName}</h4>
-                                        {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
-                                        <span className={cx('name')}>{data.fullName}</span>
-                                    </span>
-                                </Tippy>
+                                <div>
+                                    <Tippy 
+                                        interactive
+                                        placement="bottom"
+                                        offset={[-34, 40]}
+                                        delay={[800, 0]}
+                                        render={renderAccountPreview}
+                                    >
+                                        <Link className={cx('link')} to={`@${data.nickName}`}>
+                                            <span className={cx('user-info')}>
+                                                <h4 className={cx('nickName')}>{data.nickName}</h4>
+                                                {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                                                <span className={cx('name')}>{data.fullName}</span>
+                                            </span>
+                                        </Link>
+                                    </Tippy>
+                                </div>
                             <p className={cx('desc')}>
                                 <span>{data.desc}</span>
                             </p>
