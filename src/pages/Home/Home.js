@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet";
+
 import Video from "~/components/Video";
 import { menuOfShare } from '~/data'
 
@@ -29,7 +31,12 @@ const listData = [
 
 function Home() {
     return ( 
+        <>
+        <Helmet>
+            <title>TikTok For You | My React Project</title>
+        </Helmet>
         <Video listData={listData} shareData={menuOfShare}/>
+        </>
      );
 }
 

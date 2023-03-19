@@ -48,10 +48,14 @@
     background-color: var(--primary);
     color: var(--white) !important;
     border-color: var(--primary);
+    cursor: pointer;
 
     &:hover {
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #FE2C55;
-        cursor: pointer;
+    }
+
+    &:active {
+        background-color: var(--btn-primary-active);
     }
 }
 
@@ -61,6 +65,10 @@
 
     &:hover {
         background-color: rgba(254, 44, 85, 0.06);
+    }
+
+    &:active {
+        background-color: var(--btn-outline-active);
     }
 }
 

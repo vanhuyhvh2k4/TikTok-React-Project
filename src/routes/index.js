@@ -6,12 +6,20 @@ import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 import Profile from '~/pages/Profile';
 import Live from '~/pages/Live';
+import Watch from '~/pages/Watch';
 import config from '~/config';
+import DefaultLayoutLarge from '~/layouts/DefaultLayoutLarge';
 
 const publicRoutes =  [
     {
         path: config.routes.home,
         compoment: Home
+    },
+
+    {
+        path: config.routes.watch,
+        compoment: Watch,
+        layout: null
     },
 
     {
@@ -33,6 +41,7 @@ const publicRoutes =  [
     {
         path: config.routes.live,
         compoment: Live,
+        layout: DefaultLayoutLarge
     },
     {
         path: config.routes.profile,

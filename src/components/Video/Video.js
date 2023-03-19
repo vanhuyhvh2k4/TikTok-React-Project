@@ -6,11 +6,11 @@ import VideoItem from "./VideoItem";
 
 const cx = classNames.bind(styles);
 
-function Video({ listData, shareData }) {
+function Video({ listData, followingCustom }) {
     return ( 
             <div className={cx('wrapper')}>
                 {listData.map((data, index) => (
-                    <VideoItem key={index} data={data} shareData={shareData}/>
+                    <VideoItem key={index} data={data} followingCustom={followingCustom ? true : false}/>
                 ))}
             </div>
      );
@@ -18,6 +18,6 @@ function Video({ listData, shareData }) {
 
 Video.propTypes = {
     listData: PropTypes.array.isRequired,
-    shareData: PropTypes.array.isRequired,
+    followingCustom: PropTypes.bool,
 }
 export default Video;

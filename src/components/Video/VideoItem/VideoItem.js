@@ -12,6 +12,7 @@ import media from '~/assets/media';
 import { Wrapper } from "~/components/Popper";
 import AccountPreview from "~/components/SuggestedAccounts/AccountPreview";
 import { Link } from 'react-router-dom';
+import {menuOfShare} from '~/data'
 
 const cx = classNames.bind(styles);
 
@@ -29,17 +30,21 @@ const datatest = {
     "numOfLikes": 11
   }
 
-function VideoItem({ data, shareData }) {
+function VideoItem({ data, followingCustom }) {
     const initialShare = 5;
     const [numDisplayShare, setNumDisplayShare] = useState(initialShare);
     const [heart, setHeart] = useState(false);
-
+    const [follow, setFollow] = useState(false);
     const handleClickHeart = () => {
         setHeart(() => !heart);
     }
 
     const handleSeeMore = () => {
-        setNumDisplayShare(shareData.length);
+        setNumDisplayShare(menuOfShare.length);
+    }
+
+    const handleClickFollow = () => {
+        setFollow(() => !follow);
     }
 
     const handleHide = () => {
@@ -48,11 +53,11 @@ function VideoItem({ data, shareData }) {
 
     const renderShare = () => (
         <Wrapper className={cx('share-wrapper')}>
-            {shareData.slice(0, numDisplayShare).map((data, index) => (
+            {menuOfShare.slice(0, numDisplayShare).map((data, index) => (
                 <Button key={index} className={cx('share-item')} leftIcon={data.icon}>{data.title}</Button>
             ))}
 
-            {numDisplayShare < shareData.length &&  <div className={cx('seeMore-icon')} onClick={handleSeeMore}>
+            {numDisplayShare < menuOfShare.length &&  <div className={cx('seeMore-icon')} onClick={handleSeeMore}>
                     <FontAwesomeIcon icon={faChevronDown}/>
             </div>}
         </Wrapper>
@@ -60,7 +65,7 @@ function VideoItem({ data, shareData }) {
 
     const renderAccountPreview = () => (
         <Wrapper>
-            <AccountPreview data={datatest}/>
+            <AccountPreview data={datatest} isFollow={follow}/>
         </Wrapper>
     )
 
@@ -71,7 +76,7 @@ function VideoItem({ data, shareData }) {
                         interactive
                         placement="bottom-start"
                         offset={[-20, 10]}
-                        delay={[800, 0]}
+                        delay={[800, 500]}
                         render={renderAccountPreview}
                     >
                             <Link className={cx('link')} to={`@${data.nickName}`}><img className={cx('avatar')} src={data.avatar} alt=''/></Link>
@@ -80,22 +85,23 @@ function VideoItem({ data, shareData }) {
                 <div className={cx('right')}>
                     <header className={cx('header')}>
                         <div className={cx('header-wrapper')}>
-                                <div>
+                                <div className={cx('link-wrapper')}>
                                     <Tippy 
                                         interactive
                                         placement="bottom"
-                                        offset={[-34, 40]}
-                                        delay={[800, 0]}
+                                        offset={[-34, 44]}
+                                        delay={[800, 500]}
                                         render={renderAccountPreview}
                                     >
                                         <Link className={cx('link')} to={`@${data.nickName}`}>
                                             <span className={cx('user-info')}>
                                                 <h4 className={cx('nickName')}>{data.nickName}</h4>
                                                 {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
-                                                <span className={cx('name')}>{data.fullName}</span>
+                                                <span className={cx('name')}>{data.fullName} &ensp;-&ensp;</span>
                                             </span>
                                         </Link>
                                     </Tippy>
+                                    {followingCustom && <small className={cx('time')}>11h ago</small>}
                                 </div>
                             <p className={cx('desc')}>
                                 <span>{data.desc}</span>
@@ -106,11 +112,11 @@ function VideoItem({ data, shareData }) {
                                 <strong>{data.song}</strong>
                             </p>
                         </div>
-                        <Button className={cx('follow-btn')} small outline>Follow</Button>
+                        {!followingCustom && <Button className={cx('follow-btn', {'following': follow})} small outline onClick={handleClickFollow}>{follow ? 'Following' : 'Follow'}</Button>}
                     </header>
                     <section className={cx('body')}>
                         <video className={cx('video')} controls>
-                            <source src={media.video} type="video/mp4" />
+                            <source src={media.video2} type="video/mp4" />
                         Your browser does not support the video tag.
                         </video>
                         <div className={cx('action')}>
@@ -150,7 +156,7 @@ function VideoItem({ data, shareData }) {
 
 VideoItem.propTypes = {
     data: PropTypes.object.isRequired,
-    shareData: PropTypes.array.isRequired,
+    followingCustom: PropTypes.bool,
 }
 
 export default VideoItem;

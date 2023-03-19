@@ -1,0 +1,22 @@
+.wrapper > header > div {
+    width: 100%;
+
+    & > a {
+        margin-left: -4px;
+    }
+}
+
+.container {
+    display: flex;
+    margin-top: var(--default-layout-header-height);
+
+    & aside {
+        margin-left: 0;
+        width: 240px;
+    }
+}
+
+.content {
+    flex: 1;
+    padding: 24px 24px 0;
+}

@@ -34,11 +34,29 @@
     padding-right: 24px;
 }
 
+.link-wrapper {
+    display: flex;
+    align-items: flex-end;
+}
+
+.time {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
 .follow-btn {
     height: 28px;
     font-size: 1.4rem;
-}
 
+    &.following {
+        border-color: #ccc;
+        color: var(--text-color);
+
+        &:active {
+            background-color: var(--btn-none-active);
+        }
+    }
+}
 .user-info {
     display: flex;
     align-items: flex-end;
@@ -62,7 +80,7 @@
 
 .name {
     font-size: 1.2rem;
-    color: var(--text-color-light);
+    color: var(--text-color);
 }
 
 .desc {
