@@ -10,6 +10,7 @@ const LiveItem = forwardRef(({ data, onPlay, onPause, onEnded, className }, ref)
 
     return (
             <video
+                id={data.id}
                 className={cx('video', { [className] : className})} 
                 onPlay={onPlay} 
                 onPause={onPause}
@@ -22,6 +23,7 @@ const LiveItem = forwardRef(({ data, onPlay, onPause, onEnded, className }, ref)
     );
 })
 LiveItem.propTypes = {
+    id: PropTypes.number,
     data: PropTypes.object.isRequired,
     onPlay: PropTypes.func,
     onEnded: PropTypes.func,
