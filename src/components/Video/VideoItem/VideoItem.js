@@ -97,11 +97,11 @@ function VideoItem({ data, followingCustom }) {
                                             <span className={cx('user-info')}>
                                                 <h4 className={cx('nickName')}>{data.nickName}</h4>
                                                 {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
-                                                <span className={cx('name')}>{data.fullName} &ensp;-&ensp;</span>
+                                                <span className={cx('name')}>{data.fullName}</span>
                                             </span>
                                         </Link>
                                     </Tippy>
-                                    {followingCustom && <small className={cx('time')}>11h ago</small>}
+                                    {followingCustom && <small className={cx('time')}>&ensp;-&ensp;11h ago</small>}
                                 </div>
                             <p className={cx('desc')}>
                                 <span>{data.desc}</span>

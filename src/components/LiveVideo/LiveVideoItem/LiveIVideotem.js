@@ -16,7 +16,6 @@ const LiveItem = forwardRef(({ data, onPlay, onPause, onEnded, className }, ref)
                 onPause={onPause}
                 onEnded={onEnded} 
                 ref={ref}
-                autoPlay
             >
                 <source src={data.src} type="video/mp4"></source>
             </video>

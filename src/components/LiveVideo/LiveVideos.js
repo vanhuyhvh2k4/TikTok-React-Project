@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 
 import { Live, Loudspeaker, Mute, Pause, Play, Restart, UserGroupIconFill } from "../Icons";
-import styles from './LiveVideo.module.scss';
+import styles from './LiveVideos.module.scss'
 import LiveItem from "./LiveVideoItem";
 
 const cx = classNames.bind(styles);

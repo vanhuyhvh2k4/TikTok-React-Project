@@ -8,7 +8,7 @@ import * as suggestedAccountService from '~/services/suggestedAccountService';
 
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ label }) {
+function SuggestedAccounts({ label, noneTippy }) {
     const initialNumAcc = 5;
     const [suggestedAccount, setSuggestedAccount] = useState([]);
     const [numDisplayedAcc, setNumDisplayedAcc] = useState(initialNumAcc);
@@ -36,7 +36,7 @@ function SuggestedAccounts({ label }) {
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
             {suggestedAccount.slice(0, numDisplayedAcc).map(account => (
-                <AccountItem key={account._id} data={account}/>
+                <AccountItem noneTippy={noneTippy} key={account._id} data={account}/>
             ))}
             {numDisplayedAcc < suggestedAccount.length ? (
                 <>

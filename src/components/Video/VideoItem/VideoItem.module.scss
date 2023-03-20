@@ -55,6 +55,10 @@
         &:active {
             background-color: var(--btn-none-active);
         }
+
+        &:hover {
+            background-color: var(--btn-hover);
+        }
     }
 }
 .user-info {

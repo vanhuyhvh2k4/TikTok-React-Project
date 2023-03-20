@@ -51,13 +51,37 @@
     border-radius: 50%;
 }
 
+.avatarLiveCustrom {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 2px;
+    border: 1px solid var(--primary);
+}
+
 .item-info {
     flex: 1;
     margin-left: 12px;
     line-height: 1;
 }
 
+.infoLiveCustom {
+    width: 120px;
+    max-width: 120px;
+
+    & strong,.nickname {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+}
+
 .name {
+    display: flex;
     font-size: 1.3rem;
     font-family: SofiaPro;
     color: var(--text-color);
@@ -74,4 +98,14 @@
     font-size: 1rem;
     color: var(--text-color-light);
     line-height: 1.6rem;
+}
+
+.view {
+    font-family: ProximaNova;
+    font-size: 1.2rem;
+    width: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transform: translateX(24px) translateY(6px);
 }

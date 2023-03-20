@@ -1,1 +1,1 @@
-export {default} from './LiveVideo';
+export {default} from './LiveVideos';

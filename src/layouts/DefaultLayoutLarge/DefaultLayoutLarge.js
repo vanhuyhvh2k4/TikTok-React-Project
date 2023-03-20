@@ -1,6 +1,6 @@
 import classNames from "classnames/bind"
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import SidebarForLive from "../components/Sidebar/SidebarForLive";
 
 import styles from './DefaultLayoutLarge.module.scss';
 
@@ -11,7 +11,7 @@ function DefaultLayoutLarge({ children}) {
         <div className={cx('wrapper')}>
             <Header/>
             <div className={cx('container')}>
-                <Sidebar/>
+                <SidebarForLive noneTippy/>
                 <div className={cx('content')}>
                     {children}
                 </div>
