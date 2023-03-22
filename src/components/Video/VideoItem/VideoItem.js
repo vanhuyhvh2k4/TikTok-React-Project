@@ -8,27 +8,12 @@ import Tippy from "@tippyjs/react/headless";
 import styles from './VideoItem.module.scss';
 import Button from "~/components/Button";
 import { Music } from "~/components/Icons";
-import media from '~/assets/media';
 import { Wrapper } from "~/components/Popper";
 import AccountPreview from "~/components/SuggestedAccounts/AccountPreview";
 import { Link } from 'react-router-dom';
 import {menuOfShare} from '~/data'
 
 const cx = classNames.bind(styles);
-
-const datatest = {
-    "_id": {
-      "$oid": "640dd9f6b1c275d83ffa5b5c"
-    },
-    "firstName": "Deck",
-    "lastName": "Lerven",
-    "fullName": "Deck Lerven",
-    "avatar": "https://robohash.org/doloreseapossimus.jpg?size=100x100&set=set1",
-    "nickName": "dlerven3",
-    "tick": true,
-    "numOfFollowers": 20,
-    "numOfLikes": 11
-  }
 
 function VideoItem({ data, followingCustom }) {
     const initialShare = 5;
@@ -65,7 +50,7 @@ function VideoItem({ data, followingCustom }) {
 
     const renderAccountPreview = () => (
         <Wrapper>
-            <AccountPreview data={datatest} isFollow={follow}/>
+            <AccountPreview data={data} isFollow={follow}/>
         </Wrapper>
     )
 
@@ -79,7 +64,7 @@ function VideoItem({ data, followingCustom }) {
                         delay={[800, 500]}
                         render={renderAccountPreview}
                     >
-                            <Link className={cx('link')} to={`@${data.nickName}`}><img className={cx('avatar')} src={data.avatar} alt=''/></Link>
+                            <Link className={cx('link')} to={`@${data.userName}`}><img className={cx('avatar')} src={data.avatarUrl} alt=''/></Link>
                     </Tippy>
                 </div>
                 <div className={cx('right')}>
@@ -93,10 +78,10 @@ function VideoItem({ data, followingCustom }) {
                                         delay={[800, 500]}
                                         render={renderAccountPreview}
                                     >
-                                        <Link className={cx('link')} to={`@${data.nickName}`}>
+                                        <Link className={cx('link')} to={`@${data.userName}`}>
                                             <span className={cx('user-info')}>
-                                                <h4 className={cx('nickName')}>{data.nickName}</h4>
-                                                {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                                                <h4 className={cx('nickName')}>{data.userName}</h4>
+                                                {data.isTick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                                                 <span className={cx('name')}>{data.fullName}</span>
                                             </span>
                                         </Link>
@@ -104,7 +89,7 @@ function VideoItem({ data, followingCustom }) {
                                     {followingCustom && <small className={cx('time')}>&ensp;-&ensp;11h ago</small>}
                                 </div>
                             <p className={cx('desc')}>
-                                <span>{data.desc}</span>
+                                <span>{data.videoDescription}</span>
                             </p>
                             
                             <p className={cx('song')}>
@@ -116,7 +101,7 @@ function VideoItem({ data, followingCustom }) {
                     </header>
                     <section className={cx('body')}>
                         <video className={cx('video')} controls>
-                            <source src={media.video2} type="video/mp4" />
+                            <source src={data.videoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
                         </video>
                         <div className={cx('action')}>

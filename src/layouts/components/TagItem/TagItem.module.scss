@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 5px 16px;
+    width: 100%;
+
+
+    &:hover {
+        background-color: var(--btn-hover);
+        cursor: pointer;
+    }
+}
+
+.text {
+    flex: 1;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    margin-left: 12px;
+}

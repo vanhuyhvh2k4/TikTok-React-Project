@@ -16,8 +16,16 @@ function SuggestedAccounts({ label, noneTippy }) {
     useEffect(() => {
         const fetchApi = async () => {
             
-            const result = await suggestedAccountService.suggestedAccount('less');
-            setSuggestedAccount(result);
+            const result = await suggestedAccountService.suggestedAccount();
+
+            const renamedResult = result.map(({ user_name: userName, full_name: fullName,  avatar_url: avatarUrl, is_tick: isTick }) => ({
+                userName,
+                fullName,
+                avatarUrl,
+                isTick,
+              }));
+
+            setSuggestedAccount(renamedResult);
 
         }
 
@@ -35,8 +43,8 @@ function SuggestedAccounts({ label, noneTippy }) {
     return ( 
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
-            {suggestedAccount.slice(0, numDisplayedAcc).map(account => (
-                <AccountItem noneTippy={noneTippy} key={account._id} data={account}/>
+            {suggestedAccount.slice(0, numDisplayedAcc).map((account, index) => (
+                <AccountItem noneTippy={noneTippy} key={index} data={account}/>
             ))}
             {numDisplayedAcc < suggestedAccount.length ? (
                 <>

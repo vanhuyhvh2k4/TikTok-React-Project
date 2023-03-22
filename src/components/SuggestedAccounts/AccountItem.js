@@ -57,17 +57,17 @@ function AccountItem({ data, noneTippy }) {
                 placement='bottom'
                 render={renderPreview}
             >
-                <Link to={`@${data.nickName}`}>
+                <Link to={`@${data.userName}`}>
                     <div className={cx('account-item')}>
                         <img 
                             className={cx('avatar')}
-                            src={data.avatar}
+                            src={data.avatarUrl}
                             alt="imageUser"
                         />
                         <div className={cx('item-info')}>
                             <p className={cx('name')}>
-                                <strong>{data.nickName}</strong>
-                                {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                                <strong>{data.userName}</strong>
+                                {data.isTick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                             </p>
                             <p className={cx('nickname')}>{data.fullName}</p>           
                         </div>

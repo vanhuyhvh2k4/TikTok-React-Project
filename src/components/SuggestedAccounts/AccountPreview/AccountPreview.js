@@ -14,7 +14,7 @@ function AccountPreview({ data, isFollow }) {
             <header className={cx('header')}>
                 <img 
                     className={cx('avatar')} 
-                    src={data.avatar} 
+                    src={data.avatarUrl} 
                     alt=""/>
                 <>
                 <Button className={cx('btn', {'following': isFollow})} outline={isFollow} primary={!isFollow}>{isFollow ? 'Following' : 'Follow'}</Button>
@@ -23,8 +23,8 @@ function AccountPreview({ data, isFollow }) {
             <section className={cx('body')}>
                 <div className={cx('item-info')}>
                     <p className={cx('nickName')}>
-                        <strong>{data.nickName}</strong>
-                        {data.tick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
+                        <strong>{data.userName}</strong>
+                        {data.isTick && <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle}/>}
                     </p>
                     <p className={cx('name')}>{data.fullName}</p>
                 </div>
