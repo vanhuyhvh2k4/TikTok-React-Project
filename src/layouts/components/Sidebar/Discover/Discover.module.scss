@@ -20,7 +20,6 @@
     width: fit-content;
     max-width: 100%;
     overflow-x: hidden;
-    text-overflow: ellipsis;
     padding: 2px 10px;
     color: var(--text-color);
     border: 1px solid #ccc;
@@ -39,6 +38,8 @@
 }
 
 .label {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
     font-size: 1.2rem;
     line-height: 18px;
     white-space: nowrap;

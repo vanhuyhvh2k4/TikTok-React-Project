@@ -32,6 +32,7 @@ const debounceValue = useDebounce(searchValue, 800);
 
         if (!debounceValue.trim()) {
             setSearchUserResult([])
+            setSearchKeywordResult([])
             return;
         }
 

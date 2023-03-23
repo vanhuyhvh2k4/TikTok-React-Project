@@ -1,26 +1,39 @@
+import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import PropTypes from 'prop-types';
 
 import styles from './Discover.module.scss';
 import DiscoverItem from "./DiscoverItem";
+import * as discoverService from '~/services/discoverService';
 
 const cx = classNames.bind(styles);
 
-function Discover({ listData }) {
+function Discover() {
+
+    const [discover, setDiscover] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await discoverService.discover();
+
+            if (result) {
+                const renamedResult = result.map(({ keyword_name: keywordName, keyword_type: keywordType }) => ({ keywordName, keywordType }));
+                setDiscover(renamedResult);
+            }
+        };
+
+        fetchApi();
+    }, [])
+
     return ( 
         <div className={cx('wrapper')}>
             <header className={cx('title')}>Discover</header>
             <div className={cx('wrapper-items')}>
-                {listData.map((data, index) => (
+                {discover.map((data, index) => (
                     <DiscoverItem key={index} data={data}/>
                 ))}
             </div>
         </div>
      );
-}
-
-Discover.propTypes = {
-    listData: PropTypes.array.isRequired,
 }
 
 export default Discover;
