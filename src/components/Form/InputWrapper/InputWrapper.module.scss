@@ -1,0 +1,47 @@
+.wrapper {
+    height: fit-content;
+    max-width: 100%;
+    border-radius: 12px;
+    background-color: white;
+    z-index: 10;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: 16px;
+    margin-top: 16px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: rgba(22, 24, 35, 0.06);
+    cursor: pointer;
+}
+
+.header {
+    font-family: SofiaPro;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.container {
+    padding: 24px 48px 48px;
+}
+
+.footer {
+    padding: 16px 0px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+.text {
+    font-size: 1.4rem;
+}
+
+.redirect {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+}

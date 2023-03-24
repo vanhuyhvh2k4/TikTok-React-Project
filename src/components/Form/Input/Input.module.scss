@@ -1,0 +1,36 @@
+.wrapper {
+    max-width: 100%;
+    max-height: 100%;
+    
+    & + & {
+        margin-top: 24px;
+    }
+}
+
+.wrapper-input {
+    display: flex;
+    min-height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+
+    &:focus-within {
+        border-color: var(--primary);
+    }
+}
+
+.icon {
+    display: grid;
+    min-width: 50px;
+    color: white;
+    border-right: 1px solid #ccc;
+    place-items: center;
+    color: var(--text-color);
+}
+
+input {
+    flex: 1;
+    padding-left: 6px;
+    caret-color: var(--primary);
+}
+

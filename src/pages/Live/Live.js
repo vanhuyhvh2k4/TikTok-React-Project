@@ -2,6 +2,7 @@ import 'tippy.js/dist/tippy.css';
 
 import LiveVideo from '~/components/LiveVideo';
 import media from "~/assets/media";
+import { Helmet } from 'react-helmet';
 
 const listData = [
     {
@@ -17,6 +18,9 @@ const listData = [
 function Live() {
     return (
         <>
+            <Helmet>
+                <title>TikTok Live | My React Project</title>
+            </Helmet>
             <LiveVideo listData={listData}/>
         </>
     );
