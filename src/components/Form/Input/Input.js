@@ -8,7 +8,8 @@ const cx = classNames.bind(styles);
 function Input({ 
                 id,
                 className,
-                required,
+                isRequired,
+                isEmpty,
                 noneIcon,
                 label,
                 icon, 
@@ -24,8 +25,9 @@ function Input({
                 {!noneIcon && <div className={cx('icon')}>
                     {icon}
                 </div>}
-                <input className={cx({[className]: className})} id={id} name={name} placeholder={placeholder} type={type} onChange={onChange} spellCheck='false' required={required}/>
+                <input className={cx({[className]: className})} id={id} name={name} placeholder={placeholder} type={type} onChange={onChange} spellCheck='false' required={isRequired ? true : false}/>
             </div>
+            {isEmpty && <small className={cx('message')}>Please fill out this field</small>}
         </div>
      );
 }
@@ -39,7 +41,8 @@ Input.propTypes = {
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    isRequired: PropTypes.bool,
 }
 
 export default Input;

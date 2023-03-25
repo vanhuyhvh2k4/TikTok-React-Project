@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -14,7 +16,6 @@ import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config'
 import {menuHeader, userMenu} from '~/data'
-import { useEffect, useState } from 'react';
 import Overlay from '~/components/Overlay';
 import { FormSignUp } from '~/components/Form';
 
@@ -23,11 +24,12 @@ const cx = classNames.bind(styles)
 
 
 function Header() {
-    const [originTitle, setOriginTitle] = useState(document.title);
+
+    const user = useSelector((state) => state.auth.login.currentUser?.data);
+
+    const [originTitle] = useState(document.title);
 
     const [showForm, setShowForm] = useState(false);
-
-    const currentUser = false;
 
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
@@ -44,6 +46,12 @@ function Header() {
             document.title = originTitle;
     }, [showForm, originTitle])
 
+    useEffect(() => {
+        if (user) {
+            setShowForm(false);
+        }
+    }, [user])
+
     const handleCloseForm = () => {
         setShowForm(false);
     }
@@ -59,7 +67,7 @@ function Header() {
                     <Search/>
     
                     <div className={cx('actions')}>
-                        {currentUser ? (
+                        {user ? (
                             <>
                                 <Tippy delay={[0, 200]} content="upload video" placement='bottom'>
                                     <button className={cx('action-btn')}>
@@ -83,9 +91,9 @@ function Header() {
                                 <Button primary onClick={handleLoginBtn}>Log in</Button>
                             </>
                         )}
-                        <Menu items={currentUser ? userMenu : menuHeader} onChange={handleMenuChange}>
-                            {currentUser ? (
-                                <Image className={cx('user-avatar')} src='https://images.unsplash.com/photo-1678356188535-1c23c93b0746?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60' alt="Nguyen van a"/>
+                        <Menu items={user ? userMenu : menuHeader} onChange={handleMenuChange}>
+                            {user ? (
+                                <Image className={cx('user-avatar')} src={user.avatar_url} alt="Nguyen van a"/>
                             ) : (
                                     <button className={cx('more-btn')}>
                                         <FontAwesomeIcon icon={faEllipsisVertical}/>

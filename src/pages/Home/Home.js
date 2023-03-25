@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-
 import Video from "~/components/Video";
 
 function Home() {

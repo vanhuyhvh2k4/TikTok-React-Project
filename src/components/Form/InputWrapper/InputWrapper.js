@@ -12,7 +12,9 @@ function InputWrapper({
                         redirectText, 
                         footerText, 
                         className, 
-                        onClick 
+                        onClick,
+                        onSubmit,
+                        method
                     }) {
     return ( 
         <div className={cx('wrapper', {[className]: className})}>
@@ -22,7 +24,7 @@ function InputWrapper({
             <header className={cx('header')}>
                 <h2>{title}</h2>
             </header>
-            <form className={cx('container')}>
+            <form method={method} className={cx('container')} onSubmit={onSubmit}>
                 {children}
             </form>
             <footer className={cx('footer')}>
@@ -39,6 +41,8 @@ InputWrapper.propTypes = {
     footerText: PropTypes.string,
     className: PropTypes.string,
     onClick: PropTypes.func,
+    onSubmit: PropTypes.func,
+    method: PropTypes.string
 }
 
 export default InputWrapper;
