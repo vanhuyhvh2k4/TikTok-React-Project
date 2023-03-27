@@ -17,7 +17,7 @@ import Search from '../Search';
 import config from '~/config'
 import {menuHeader, userMenu} from '~/data'
 import Overlay from '~/components/Overlay';
-import { FormSignUp } from '~/components/Form';
+import { FormSignIn, FormSignUp } from '~/components/Form';
 
 const cx = classNames.bind(styles)
 
@@ -29,31 +29,46 @@ function Header() {
 
     const [originTitle] = useState(document.title);
 
-    const [showForm, setShowForm] = useState(false);
+    const [showFormSignIn, setShowFormSignIn] = useState(false);
+
+    const [showFormSignUp, setShowFormSignUp] = useState(false);
 
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
     }
 
     const handleLoginBtn = () => {
-        setShowForm(true);        
+        setShowFormSignIn(true);        
+    }
+
+    const handleRedirectLogin = () => {
+        setShowFormSignUp(true);
+        setShowFormSignIn(false);
+    }
+
+    const handleRedirectSignUp = () => {
+        setShowFormSignUp(false);
+        setShowFormSignIn(true);
     }
 
     useEffect(() => {
-        if (showForm)
+        if (showFormSignIn)
             document.title = "Login | My React Project";
-        else
-            document.title = originTitle;
-    }, [showForm, originTitle])
+        else if (showFormSignUp)
+            document.title = "Sign Up | My React Project";
+            else
+                document.title = originTitle;
+    }, [showFormSignIn, showFormSignUp, originTitle])
 
     useEffect(() => {
         if (user) {
-            setShowForm(false);
+            setShowFormSignIn(false);
         }
     }, [user])
 
     const handleCloseForm = () => {
-        setShowForm(false);
+        setShowFormSignIn(false);
+        setShowFormSignUp(false);
     }
 
     return ( 
@@ -103,10 +118,11 @@ function Header() {
                     </div>
             </div>
             <>
-                 {showForm && (
+                 {(showFormSignIn || showFormSignUp) && (
                     <div className={cx('form')}>
                         <Overlay onClick={handleCloseForm}/>
-                        <FormSignUp onClick={handleCloseForm}/>
+                        {(showFormSignIn && !showFormSignUp) && <FormSignIn onClick={handleCloseForm} onClickRedirect={handleRedirectLogin}/>}
+                        {(showFormSignUp && !showFormSignIn) && < FormSignUp onClick={handleCloseForm} onClickRedirect={handleRedirectSignUp}/>}
                     </div>
                  )}   
             </>

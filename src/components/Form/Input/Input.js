@@ -38,9 +38,9 @@ Input.propTypes = {
     noneIcon: PropTypes.bool,
     label: PropTypes.string.isRequired,
     icon: PropTypes.node,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     placeholder: PropTypes.string,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
     onChange: PropTypes.func,
     isRequired: PropTypes.bool,
 }
