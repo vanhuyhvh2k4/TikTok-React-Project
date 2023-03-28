@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 
 import { Close } from "../../Icons";
 import styles from './InputWrapper.module.scss';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
@@ -15,11 +16,19 @@ function InputWrapper({
                         onClick,
                         onSubmit,
                         method,
-                        onClickRedirect
+                        onClickRedirect,
+                        loader,
+                        message,
+                        displayMessage
                     }) {
     return ( 
         <div className={cx('wrapper', {[className]: className})}>
+            {displayMessage && <div className={cx('message')}>{message}</div>}
+            {loader && <div className={cx('loader')}>
+                <Loader/>
+            </div>}
             <div className={cx('icon')} onClick={onClick}>
+
                 <Close/>
             </div>
             <header className={cx('header')}>
@@ -44,7 +53,10 @@ InputWrapper.propTypes = {
     onClick: PropTypes.func,
     onSubmit: PropTypes.func,
     method: PropTypes.string,
-    onClickRedirect: PropTypes.func
+    onClickRedirect: PropTypes.func,
+    loader: PropTypes.bool,
+    displayMessage: PropTypes.bool,
+    message: PropTypes.string
 }
 
 export default InputWrapper;

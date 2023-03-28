@@ -27,6 +27,8 @@ function Header() {
 
     const user = useSelector((state) => state.auth.login.currentUser?.data);
 
+    const statusSignUp = useSelector((state) => state.auth.signUp?.status);
+
     const [originTitle] = useState(document.title);
 
     const [showFormSignIn, setShowFormSignIn] = useState(false);
@@ -65,6 +67,13 @@ function Header() {
             setShowFormSignIn(false);
         }
     }, [user])
+
+    useEffect(() => {
+        if (statusSignUp === 'success') {
+            setShowFormSignUp(false);
+            setShowFormSignIn(true);
+        }
+    }, [statusSignUp])
 
     const handleCloseForm = () => {
         setShowFormSignIn(false);

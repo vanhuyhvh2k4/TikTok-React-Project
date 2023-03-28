@@ -11,6 +11,7 @@ const authSlice = createSlice({
         },
         signUp: {
             isFetching: false,
+            status: null,
             error: false,
         }
     },
@@ -31,10 +32,12 @@ const authSlice = createSlice({
             state.signUp.isFetching = true;
         },
         signUpSuccess: (state) => {
+            state.signUp.status = 'success';
             state.signUp.isFetching = false;
             state.signUp.error = false;
         },
         signUpFailed: (state) => {
+            state.signUp.status = 'error';
             state.signUp.isFetching = false;
             state.signUp.error = true;
         }

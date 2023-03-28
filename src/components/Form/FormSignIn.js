@@ -10,12 +10,16 @@ import styles from './Form.module.scss';
 import Input from "./Input";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { loginUser } from '~/redux/apiRequest';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function FormSignIn({ onClick, onClickRedirect }) {
+
+    const isFetching = useSelector(state => state.auth.login?.isFetching);
+
+    const isFailed = useSelector(state => state.auth.login?.error);
 
     const [email, setEmail] = useState('');
 
@@ -67,7 +71,7 @@ function FormSignIn({ onClick, onClickRedirect }) {
     return (   
 
         <>
-            <InputWrapper method='post' className={cx('wrapper')} onClick={onClick} onClickRedirect={onClickRedirect} title='Login to TikTok' footerText="Don't have an account? " redirectText='Sign Up' onSubmit={handleSubmit}>
+            <InputWrapper displayMessage={isFailed} message='Login Failed' loader={isFetching} method='post' className={cx('wrapper')} onClick={onClick} onClickRedirect={onClickRedirect} title='Login to TikTok' footerText="Don't have an account? " redirectText='Sign Up' onSubmit={handleSubmit}>
                 <Input type='email' label='Email:' placeholder='Enter your email' name='email' id='email' icon={<User/>} onChange={handleEmailChange} isEmpty={isEmailEmpty}/>
                 <Input type='password' label='Password:' placeholder='Enter your password' name='password' id='password' icon={<FontAwesomeIcon icon={faKey}/>} onChange={handlePasswordChange} isEmpty={isPasswordEmpty}/>
                 <Button className={cx('button')} primary>Sign In</Button>
@@ -80,5 +84,4 @@ FormSignIn.propTypes = {
     onClick: PropTypes.func,
     onClickRedirect: PropTypes.func,
 }
-
 export default FormSignIn;

@@ -17,6 +17,8 @@ function Input({
                 placeholder, 
                 type,
                 onChange,
+                noteMessage,
+                value
             }) {
     return ( 
         <div className={cx('wrapper')}>
@@ -25,9 +27,9 @@ function Input({
                 {!noneIcon && <div className={cx('icon')}>
                     {icon}
                 </div>}
-                <input className={cx({[className]: className})} id={id} name={name} placeholder={placeholder} type={type} onChange={onChange} spellCheck='false' required={isRequired ? true : false}/>
+                <input value={value} className={cx({[className]: className})} id={id} name={name} placeholder={placeholder} type={type} onChange={onChange} spellCheck='false' required={isRequired ? true : false}/>
             </div>
-            {isEmpty && <small className={cx('message')}>Please fill out this field</small>}
+            {isEmpty && <small className={cx('message')}>{noteMessage || 'Please fill out this field'}</small>}
         </div>
      );
 }
@@ -43,6 +45,9 @@ Input.propTypes = {
     type: PropTypes.string,
     onChange: PropTypes.func,
     isRequired: PropTypes.bool,
+    noteMessage: PropTypes.string,
+    value: PropTypes.string
+
 }
 
 export default Input;
