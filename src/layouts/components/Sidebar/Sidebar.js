@@ -3,6 +3,7 @@ import { HomeIcon, HomeActiveIcon, LiveIcon, LiveActiveIcon, UserGroupIcon, User
 import SuggestedAccounts from '~/components/SuggestedAccounts';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import { useDispatch } from 'react-redux';
 
 import config from '~/config';
 import Discover from './Discover';
@@ -12,67 +13,20 @@ import styles from './Sidebar.module.scss';
 import Button from '~/components/Button';
 import { footer } from '~/data';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import Overlay from '~/components/Overlay';
-import { FormSignIn, FormSignUp } from '~/components/Form';
+import { showLogin } from '~/redux/authSlice';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const dispatch = useDispatch();
 
     const user = useSelector((state) => state.auth.login.currentUser?.data);
 
-    const statusSignUp = useSelector((state) => state.auth.signUp?.status);
-
-    const [originTitle] = useState(document.title);
-
-    const [showFormSignIn, setShowFormSignIn] = useState(false);
-
-    const [showFormSignUp, setShowFormSignUp] = useState(false);
-
     const handleLoginBtn = () => {
-        setShowFormSignIn(true);        
-    }
-
-    const handleRedirectLogin = () => {
-        setShowFormSignUp(true);
-        setShowFormSignIn(false);
-    }
-
-    const handleRedirectSignUp = () => {
-        setShowFormSignUp(false);
-        setShowFormSignIn(true);
-    }
-
-    useEffect(() => {
-        if (showFormSignIn)
-            document.title = "Login | My React Project";
-        else if (showFormSignUp)
-            document.title = "Sign Up | My React Project";
-            else
-                document.title = originTitle;
-    }, [showFormSignIn, showFormSignUp, originTitle])
-
-    useEffect(() => {
-        if (user) {
-            setShowFormSignIn(false);
-        }
-    }, [user])
-
-    useEffect(() => {
-        if (statusSignUp === 'success') {
-            setShowFormSignUp(false);
-            setShowFormSignIn(true);
-        }
-    }, [statusSignUp])
-
-    const handleCloseForm = () => {
-        setShowFormSignIn(false);
-        setShowFormSignUp(false);
+        dispatch(showLogin());
     }
 
     return (
-        <>
         <aside className={cx('wrapper')}>
                 <PerfectScrollbar>
                         <div className={cx('content')}>
@@ -95,17 +49,8 @@ function Sidebar() {
     
                             <Footer listData={footer}/>
                         </div>
-                        
                 </PerfectScrollbar>
         </aside>
-                 {(showFormSignIn || showFormSignUp) && (
-                    <div className={cx('form')}>
-                        <Overlay onClick={handleCloseForm}/>
-                        {(showFormSignIn && !showFormSignUp) && <FormSignIn onClick={handleCloseForm} onClickRedirect={handleRedirectLogin}/>}
-                        {(showFormSignUp && !showFormSignIn) && < FormSignUp onClick={handleCloseForm} onClickRedirect={handleRedirectSignUp}/>}
-                    </div>
-                 )}   
-            </>
         )
 }
 

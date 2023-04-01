@@ -50,6 +50,7 @@ function Video({ followingCustom }) {
             const result = await homeVideoService.homeVideoLogin(accessToken);
                     if (result.length > 0) {
                         const renamedResult = result.map(({ 
+                                user_id: userId,
                                 video_description: videoDescription, 
                                 video_url: videoUrl, 
                                 avatar_url: avatarUrl, 
@@ -57,6 +58,7 @@ function Video({ followingCustom }) {
                                 full_name: fullName, 
                                 is_tick: isTick 
                             }) => ({
+                                userId,
                                 videoDescription,
                                 videoUrl,
                                 avatarUrl,

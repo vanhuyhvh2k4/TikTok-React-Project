@@ -12,10 +12,11 @@ import styles from './Form.module.scss';
 import Input from "./Input";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import * as authService from '~/services/authService';
+import { hideSignUp, showLogin } from "~/redux/authSlice";
 
 const cx = classNames.bind(styles);
 
-function FormSignUp({ onClick, onClickRedirect }) {
+function FormSignUp({ onClick }) {
     const dispatch = useDispatch();
     const isFetching = useSelector(state => state.auth.signUp?.isFetching);
 
@@ -49,6 +50,11 @@ function FormSignUp({ onClick, onClickRedirect }) {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value.trim());
         setIsPasswordEmpty(e.target.value.trim().length === 0);
+    }
+
+    const handleRedirectSignUp = () => {
+        dispatch(hideSignUp());
+        dispatch(showLogin());
     }
 
     const handleSubmit = (e) => {
@@ -131,7 +137,7 @@ function FormSignUp({ onClick, onClickRedirect }) {
 
     return ( 
         <>
-            <InputWrapper loader={isFetching} title="Sign Up for TikTok" className={cx('wrapper')} footerText="Already have an account? " redirectText="Sign In" onClick={onClick} onClickRedirect={onClickRedirect} onSubmit={handleSubmit}>
+            <InputWrapper loader={isFetching} title="Sign Up for TikTok" className={cx('wrapper')} footerText="Already have an account? " redirectText="Sign In" onClick={onClick} onClickRedirect={handleRedirectSignUp} onSubmit={handleSubmit}>
                 <Input label="Full Name" id="fullName" icon={<FontAwesomeIcon icon={faFileSignature}/>} onChange={handleFullNameChange} isEmpty={isFullNameEmpty} placeholder="Enter your full name"/>
                 <Input label="User Name" id="userName" icon={<User/>} onChange={handleUserNameChange} isEmpty={isUserNameEmpty || usernameExists} noteMessage={usernameExists && 'User name is already in use'} placeholder="Enter user name"/>
                 <Input label="Email" id="email" type="email" icon={<FontAwesomeIcon icon={faEnvelope}/>} onChange={handleEmailChange} isEmpty={isEmailEmpty || emailExists} noteMessage={emailExists && 'Email is already in use'} placeholder="Enter your email"/>
@@ -144,7 +150,6 @@ function FormSignUp({ onClick, onClickRedirect }) {
 
 FormSignUp.propTypes = {
     onClick: PropTypes.func,
-    onClickRedirect: PropTypes.func
 }
 
 export default FormSignUp;

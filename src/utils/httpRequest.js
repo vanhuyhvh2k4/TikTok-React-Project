@@ -17,4 +17,9 @@ export const post = async (path, options = {}, config = {}) => {
     return respone;
 }
 
+export const patch = async (path, options = {}, config = {}) => {
+    const respone = await request.patch(path, options, config)
+    return respone;
+}
+
 export default request;

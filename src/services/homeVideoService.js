@@ -20,3 +20,17 @@ export const homeVideoLogin = async (accessToken) => {
         return error;
     }
 }
+
+export const follow = async (accessToken, userIdFollowed, status) => {
+    try {
+        const res = await request.patch('home/follow', {
+            userId: userIdFollowed,
+            status
+        }, {
+            headers: { token: `bearer ${accessToken}`}
+        });
+        return res.data;
+    } catch (error) {
+        return error;
+    }
+}

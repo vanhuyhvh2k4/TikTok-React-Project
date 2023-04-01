@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { faCheckCircle, faChevronDown, faCommentDots, faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,9 @@ import { Wrapper } from "~/components/Popper";
 import AccountPreview from "~/components/SuggestedAccounts/AccountPreview";
 import { Link } from 'react-router-dom';
 import {menuOfShare} from '~/data'
+import * as homeVideoService from "~/services/homeVideoService";
+import { useDispatch, useSelector } from "react-redux";
+import { showLogin } from "~/redux/authSlice";
 
 const cx = classNames.bind(styles);
 
@@ -23,14 +26,37 @@ function VideoItem({ data, followingCustom }) {
     const handleClickHeart = () => {
         setHeart(() => !heart);
     }
+    const dispatch = useDispatch();
+    const accessToken = useSelector(state => state.auth.login.currentUser?.access_token);
 
     const handleSeeMore = () => {
         setNumDisplayShare(menuOfShare.length);
     }
 
     const handleClickFollow = () => {
-        setFollow(() => !follow);
+        if (!accessToken) {
+            dispatch(showLogin());
+        }
+        else {
+            setFollow(() => !follow);
+        }
     }
+
+    useEffect(() => {
+        if (follow) {
+            const fetchApi = async () => {
+                 await homeVideoService.follow(accessToken, data.userId, true);
+            }
+            fetchApi();
+        }
+        else {
+            const fetchApi = async () => {
+                await homeVideoService.follow(accessToken, data.userId, false);
+            }
+            fetchApi();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [follow])
 
     const handleHide = () => {
         setNumDisplayShare(initialShare)

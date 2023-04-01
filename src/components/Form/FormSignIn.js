@@ -12,10 +12,11 @@ import InputWrapper from "./InputWrapper/InputWrapper";
 import * as authService from '~/services/authService';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { hideLogin, showSignUp } from '~/redux/authSlice';
 
 const cx = classNames.bind(styles);
 
-function FormSignIn({ onClick, onClickRedirect }) {
+function FormSignIn({ onClick }) {
 
     const isFetching = useSelector(state => state.auth.login?.isFetching);
 
@@ -41,6 +42,12 @@ function FormSignIn({ onClick, onClickRedirect }) {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value.trim());
         setIsPasswordEmpty(e.target.value.trim().length === 0);
+    }
+
+    
+    const handleRedirectLogin = () => {
+        dispatch(showSignUp());
+        dispatch(hideLogin());
     }
 
     const handleSubmit = (e) => {
@@ -74,7 +81,7 @@ function FormSignIn({ onClick, onClickRedirect }) {
     return (   
 
         <>
-            <InputWrapper displayMessage={isFailed} message='Login Failed' loader={isFetching} method='post' className={cx('wrapper')} onClick={onClick} onClickRedirect={onClickRedirect} title='Login to TikTok' footerText="Don't have an account? " redirectText='Sign Up' onSubmit={handleSubmit}>
+            <InputWrapper displayMessage={isFailed} message='Login Failed' loader={isFetching} method='post' className={cx('wrapper')} onClick={onClick} onClickRedirect={handleRedirectLogin} title='Login to TikTok' footerText="Don't have an account? " redirectText='Sign Up' onSubmit={handleSubmit}>
                 <Input type='email' label='Email:' placeholder='Enter your email' name='email' id='email' icon={<User/>} onChange={handleEmailChange} isEmpty={isEmailEmpty}/>
                 <Input type='password' label='Password:' placeholder='Enter your password' name='password' id='password' icon={<FontAwesomeIcon icon={faKey}/>} onChange={handlePasswordChange} isEmpty={isPasswordEmpty}/>
                 <Button className={cx('button')} primary>Sign In</Button>
@@ -85,6 +92,5 @@ function FormSignIn({ onClick, onClickRedirect }) {
 
 FormSignIn.propTypes = {
     onClick: PropTypes.func,
-    onClickRedirect: PropTypes.func,
 }
 export default FormSignIn;

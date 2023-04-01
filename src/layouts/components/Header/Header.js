@@ -6,6 +6,7 @@ import 'tippy.js/dist/tippy.css';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -18,6 +19,7 @@ import config from '~/config'
 import {menuHeader, userMenu} from '~/data'
 import Overlay from '~/components/Overlay';
 import { FormSignIn, FormSignUp } from '~/components/Form';
+import { showLogin, hideLogin, hideSignUp } from '~/redux/authSlice';
 
 const cx = classNames.bind(styles)
 
@@ -27,57 +29,50 @@ function Header() {
 
     const user = useSelector((state) => state.auth.login.currentUser?.data);
 
+    const statusOfLogin = useSelector((state) => state.auth.isShowLogin.status);
+
+    const statusOfSignUp = useSelector((state) => state.auth.isShowSignUp.status);
+
     const statusSignUp = useSelector((state) => state.auth.signUp?.status);
 
     const [originTitle] = useState(document.title);
 
-    const [showFormSignIn, setShowFormSignIn] = useState(false);
-
-    const [showFormSignUp, setShowFormSignUp] = useState(false);
+    const dispatch = useDispatch();
 
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
     }
 
     const handleLoginBtn = () => {
-        setShowFormSignIn(true);        
-    }
-
-    const handleRedirectLogin = () => {
-        setShowFormSignUp(true);
-        setShowFormSignIn(false);
-    }
-
-    const handleRedirectSignUp = () => {
-        setShowFormSignUp(false);
-        setShowFormSignIn(true);
+        dispatch(showLogin());
     }
 
     useEffect(() => {
-        if (showFormSignIn)
+        if (statusOfLogin)
             document.title = "Login | My React Project";
-        else if (showFormSignUp)
+        else if (statusOfSignUp)
             document.title = "Sign Up | My React Project";
             else
                 document.title = originTitle;
-    }, [showFormSignIn, showFormSignUp, originTitle])
+    }, [statusOfLogin, statusOfSignUp, originTitle])
 
     useEffect(() => {
         if (user) {
-            setShowFormSignIn(!user)
+            dispatch(hideLogin());
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     useEffect(() => {
         if (statusSignUp === 'success') {
-            setShowFormSignUp(false);
-            setShowFormSignIn(true);
+            dispatch(hideSignUp());
+            dispatch(showLogin());
         }
-    }, [statusSignUp])
+    }, [statusSignUp, dispatch])
 
     const handleCloseForm = () => {
-        setShowFormSignIn(false);
-        setShowFormSignUp(false);
+        dispatch(hideLogin())
+        dispatch(hideSignUp());
     }
 
     return ( 
@@ -127,11 +122,11 @@ function Header() {
                     </div>
             </div>
             <>
-                 {(showFormSignIn || showFormSignUp) && (
+                 {(statusOfLogin || statusOfSignUp) && (
                     <div className={cx('form')}>
                         <Overlay onClick={handleCloseForm}/>
-                        {(showFormSignIn && !showFormSignUp) && <FormSignIn onClick={handleCloseForm} onClickRedirect={handleRedirectLogin}/>}
-                        {(showFormSignUp && !showFormSignIn) && < FormSignUp onClick={handleCloseForm} onClickRedirect={handleRedirectSignUp}/>}
+                        {(statusOfLogin && !statusOfSignUp) && <FormSignIn onClick={handleCloseForm}/>}
+                        {(statusOfSignUp && !statusOfLogin) && < FormSignUp onClick={handleCloseForm}/>}
                     </div>
                  )}   
             </>
