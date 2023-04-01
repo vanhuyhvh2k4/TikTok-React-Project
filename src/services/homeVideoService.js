@@ -9,3 +9,14 @@ export const homeVideo = async () => {
         console.log(error);
     }
 }
+
+export const homeVideoLogin = async (accessToken) => {
+    try {
+        const res = await request.get('home/videoLogin', {
+            headers: { token: `bearer ${accessToken}` }
+        });
+        return res.data;
+    } catch (error) {
+        return error;
+    }
+}

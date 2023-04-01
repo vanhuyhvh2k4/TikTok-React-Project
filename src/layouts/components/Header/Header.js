@@ -64,7 +64,7 @@ function Header() {
 
     useEffect(() => {
         if (user) {
-            setShowFormSignIn(false);
+            setShowFormSignIn(!user)
         }
     }, [user])
 
@@ -117,7 +117,7 @@ function Header() {
                         )}
                         <Menu items={user ? userMenu : menuHeader} onChange={handleMenuChange}>
                             {user ? (
-                                <Image className={cx('user-avatar')} src={user.avatar_url} alt="Nguyen van a"/>
+                                <Image className={cx('user-avatar')} src={user.avatar_url} alt="avatar user"/>
                             ) : (
                                     <button className={cx('more-btn')}>
                                         <FontAwesomeIcon icon={faEllipsisVertical}/>

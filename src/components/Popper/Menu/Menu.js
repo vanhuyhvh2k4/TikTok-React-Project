@@ -7,26 +7,38 @@ import { Wrapper as PopperWrapper } from '~/components/Popper'
 import Header from "./Header";
 import styles from './Menu.module.scss';
 import MenuItem from "./MenuItem";
+import * as authService from '~/services/authService';
+import { useDispatch, useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {}
 
 function Menu({ children , items = [], onChange = defaultFn, hideOnClick = false }) {
 
+    const user = useSelector(state => state.auth.login.currentUser);
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
-    
+    const dispatch = useDispatch();
+
     const renderItems = () => {
         return current.data.map((item, index) => 
         {
+            const isHandle = item.handle;
             const isParent = !!item.children
             return <MenuItem key={index} data={item} onClick={() => {
                 if (isParent) {
                     setHistory(prev => [...prev, item.children])
                 }
-                else {
-                    onChange(item);
-                }
+                else if (isHandle) {
+                    const fetchApi = async () => {
+                        const response = await authService.logoutUser(dispatch, user?.access_token)
+                        console.log(response)
+                    }
+                    fetchApi();
+                    }
+                    else {
+                        onChange(item)
+                    }
             }}/>
         }
         )

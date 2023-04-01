@@ -47,4 +47,14 @@
     background-color: #000;
     border-radius: 5px;
   }
-
+ 
+.form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}

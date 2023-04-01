@@ -54,8 +54,8 @@ export const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faSignOut}/>,
         title: 'Log Out',
-        to: '/logout',
         separate: true,
+        handle: true,
     },
 ]
 

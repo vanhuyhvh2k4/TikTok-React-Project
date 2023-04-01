@@ -13,9 +13,15 @@ const authSlice = createSlice({
             isFetching: false,
             status: null,
             error: false,
+        },
+        logout: {
+            isFetching: false,
+            status: null,
+            error: false
         }
     },
     reducers: {
+        // Login
         loginStart: (state) => {
             state.login.isFetching = true;
         },
@@ -28,6 +34,7 @@ const authSlice = createSlice({
             state.login.isFetching = false;  
             state.login.error = true;
         },
+        // Signup
         signUpStart: (state) => {
             state.signUp.isFetching = true;
         },
@@ -40,6 +47,21 @@ const authSlice = createSlice({
             state.signUp.status = 'error';
             state.signUp.isFetching = false;
             state.signUp.error = true;
+        },
+        // Logout
+        logoutStart: (state) => {
+            state.logout.isFetching = true;
+            state.logout.error = false;
+        },
+        logoutSuccess: (state) => {
+            state.logout.isFetching = false;
+            state.login.currentUser = null;
+            state.logout.status = 'success';
+        },
+        logoutFailed: (state) => {
+            state.logout.isFetching = false;
+            state.logout.status = 'error';
+            state.logout.error = true;
         }
     }
 })
@@ -51,6 +73,9 @@ export const {
     signUpStart,
     signUpSuccess,
     signUpFailed,
+    logoutStart,
+    logoutSuccess,
+    logoutFailed
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -9,7 +9,7 @@ import { User } from "../Icons";
 import styles from './Form.module.scss';
 import Input from "./Input";
 import InputWrapper from "./InputWrapper/InputWrapper";
-import { loginUser } from '~/redux/apiRequest';
+import * as authService from '~/services/authService';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,8 +63,11 @@ function FormSignIn({ onClick, onClickRedirect }) {
                 email,
                 password
             }
-    
-            loginUser(newUser, dispatch, navigate)
+            
+            const fetchApi = async () => {
+                await authService.loginUser(newUser, dispatch, navigate)
+            }
+            fetchApi();
         }
     }   
 

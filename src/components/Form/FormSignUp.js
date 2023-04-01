@@ -11,7 +11,6 @@ import { User } from "../Icons";
 import styles from './Form.module.scss';
 import Input from "./Input";
 import InputWrapper from "./InputWrapper/InputWrapper";
-import { signUpUser } from "~/redux/apiRequest";
 import * as authService from '~/services/authService';
 
 const cx = classNames.bind(styles);
@@ -93,7 +92,10 @@ function FormSignUp({ onClick, onClickRedirect }) {
                         email,
                         password,
                     }
-                    signUpUser(newUser, dispatch);
+                    const fetchApi = async () => {
+                        await authService.signUpUser(newUser, dispatch)
+                    }
+                    fetchApi();
                     
                 }
     }
